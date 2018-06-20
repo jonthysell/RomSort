@@ -66,10 +66,13 @@ namespace RomSort
             private set
             {
                 _sourceTree = value;
+                SourceTreeMetrics = NodeMetrics.GetMetrics(_sourceTree, true);
                 View.Update(UpdateType.SourceTree);
             }
         }
         private DirectoryNode _sourceTree;
+
+        public NodeMetrics SourceTreeMetrics { get; private set; }
 
         public DirectoryNode DestinationTree
         {
@@ -80,10 +83,13 @@ namespace RomSort
             private set
             {
                 _destinationTree = value;
+                DestinationTreeMetrics = NodeMetrics.GetMetrics(_destinationTree, true);
                 View.Update(UpdateType.DestinationTree);
             }
         }
         private DirectoryNode _destinationTree;
+
+        public NodeMetrics DestinationTreeMetrics { get; private set; }
 
         public RomSortApp(IRomSortAppView view)
         {

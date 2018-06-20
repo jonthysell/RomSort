@@ -79,11 +79,20 @@ namespace RomSort.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to sort these files?.
+        ///   Looks up a localized string similar to Are you sure you want to sort these files? This operation cannot be undone..
         /// </summary>
         internal static string ExecuteSortConfirmPrompt {
             get {
                 return ResourceManager.GetString("ExecuteSortConfirmPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} files in {1} folders.
+        /// </summary>
+        internal static string MetricsLabelFormat {
+            get {
+                return ResourceManager.GetString("MetricsLabelFormat", resourceCulture);
             }
         }
         

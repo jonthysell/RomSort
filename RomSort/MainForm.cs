@@ -145,18 +145,21 @@ namespace RomSort
             if ((type & UpdateType.RootDirectory) == UpdateType.RootDirectory)
             {
                 rootDirTextBox.Text = App.RootDir;
-                sortButton.Enabled = true;
-                sortToolStripMenuItem.Enabled = true;
             }
 
-            if ((type & UpdateType.SourceTree) == UpdateType.SourceTree)
+            if ((type & UpdateType.SourceTree) == UpdateType.SourceTree && null != App.SourceTree)
             {
                 PopulateTree(sourceTreeView, App.SourceTree);
+                sourceMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.SourceTreeMetrics.FileCount, App.SourceTreeMetrics.DirectoryCount);
             }
 
-            if ((type & UpdateType.DestinationTree) == UpdateType.DestinationTree)
+            if ((type & UpdateType.DestinationTree) == UpdateType.DestinationTree && null != App.DestinationTree)
             {
                 PopulateTree(destinationTreeView, App.DestinationTree);
+                destinationMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.DestinationTreeMetrics.FileCount, App.DestinationTreeMetrics.DirectoryCount);
+
+                sortButton.Enabled = true;
+                sortToolStripMenuItem.Enabled = true;
             }
         }
 

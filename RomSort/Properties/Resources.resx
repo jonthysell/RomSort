@@ -124,7 +124,10 @@
     <value>{0}</value>
   </data>
   <data name="ExecuteSortConfirmPrompt" xml:space="preserve">
-    <value>Are you sure you want to sort these files?</value>
+    <value>Are you sure you want to sort these files? This operation cannot be undone.</value>
+  </data>
+  <data name="MetricsLabelFormat" xml:space="preserve">
+    <value>{0} files in {1} folders</value>
   </data>
   <data name="PromptForConfirmationCaption" xml:space="preserve">
     <value>Confirm</value>
