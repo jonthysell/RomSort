@@ -1,5 +1,5 @@
 ﻿// 
-// Program.cs
+// ListUtils.cs
 //  
 // Author:
 //       Jon Thysell <thysell@gmail.com>
@@ -25,21 +25,43 @@
 // THE SOFTWARE.
 
 using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace RomSort
 {
-    public static class Program
+    public static class ListUtils
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
+        public static bool SortedInsert<T>(List<T> sortedList, T value) where T : IComparable
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            if (null == sortedList)
+            {
+                throw new ArgumentNullException("sortedList");
+            }
+
+            if (null == value)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            int index = sortedList.BinarySearch(value);
+
+            if (index < 0)
+            {
+                index = ~index;
+
+                if (index == sortedList.Count)
+                {
+                    sortedList.Add(value);
+                }
+                else
+                {
+                    sortedList.Insert(index, value);
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

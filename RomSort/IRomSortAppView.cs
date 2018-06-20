@@ -1,5 +1,5 @@
 ﻿// 
-// Program.cs
+// IRomSortAppView.cs
 //  
 // Author:
 //       Jon Thysell <thysell@gmail.com>
@@ -25,21 +25,28 @@
 // THE SOFTWARE.
 
 using System;
-using System.Windows.Forms;
 
 namespace RomSort
 {
-    public static class Program
+    public interface IRomSortAppView
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-        }
+        void HandleException(Exception ex);
+
+        bool PromptForConfirmation(string prompt);
+
+        bool TryPromptForDirectory(string prompt, out string dirPath);
+
+        void Update(UpdateType type);
+
+        void Exit();
+    }
+
+    [Flags]
+    public enum UpdateType
+    {
+        None = 0x0,
+        RootDirectory = 0x1,
+        SourceTree = 0x2,
+        DestinationTree = 0x4,
     }
 }
