@@ -43,16 +43,8 @@ namespace RomSort
             }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException();
-                }
-
-                _rootDir = value.Trim();
+                _rootDir = Path.GetFullPath(value);
                 View.Update(UpdateType.RootDirectory);
-
-                SourceTree = LoadDirectory(_rootDir);
-                DestinationTree = SourceTree; // TODO
             }
         }
         private string _rootDir;
@@ -99,10 +91,16 @@ namespace RomSort
         public void Open()
         {
             string rootDir;
-            if (View.TryPromptForDirectory(Resources.RootDirectoryPrompt, out rootDir))
+            if (View.TryPromptForDirectory(Resources.RootDirectoryPrompt, out rootDir, RootDir))
             {
                 RootDir = rootDir;
             }
+        }
+
+        public void Load()
+        {
+            SourceTree = LoadDirectory(_rootDir);
+            DestinationTree = SourceTree; // TODO
         }
 
         public void Sort()

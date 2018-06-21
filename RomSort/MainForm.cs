@@ -51,6 +51,25 @@ namespace RomSort
             {
                 SetBusy();
                 App.Open();
+                App.Load();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+            finally
+            {
+                SetIdle();
+            }
+        }
+
+        private void loadEventHandler(object sender, EventArgs e)
+        {
+            try
+            {
+                SetBusy();
+                App.RootDir = rootDirTextBox.Text;
+                App.Load();
             }
             catch (Exception ex)
             {
@@ -107,6 +126,20 @@ namespace RomSort
             }
         }
 
+        private void rootDirTextBox_TextChanged(object sender, EventArgs e)
+        {
+            loadButton.Enabled = !string.IsNullOrEmpty(rootDirTextBox.Text);
+        }
+
+        private void rootDirTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                loadEventHandler(sender, e);
+                e.Handled = true;
+            }
+        }
+
         #endregion
 
         #region IRomSortAppView
@@ -123,10 +156,11 @@ namespace RomSort
             return (result == DialogResult.Yes);
         }
 
-        public bool TryPromptForDirectory(string prompt, out string rootDir)
+        public bool TryPromptForDirectory(string prompt, out string rootDir, string defaultPath = "")
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             dialog.Description = prompt;
+            dialog.SelectedPath = defaultPath;
 
             DialogResult result = dialog.ShowDialog();
 
@@ -158,7 +192,6 @@ namespace RomSort
                 PopulateTree(destinationTreeView, App.DestinationTree);
                 destinationMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.DestinationTreeMetrics.FileCount, App.DestinationTreeMetrics.DirectoryCount);
 
-                sortButton.Enabled = true;
                 sortToolStripMenuItem.Enabled = true;
             }
         }

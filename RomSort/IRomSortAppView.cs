@@ -34,7 +34,7 @@ namespace RomSort
 
         bool PromptForConfirmation(string prompt);
 
-        bool TryPromptForDirectory(string prompt, out string dirPath);
+        bool TryPromptForDirectory(string prompt, out string dirPath, string defaultPath = "");
 
         void Update(UpdateType type);
 
