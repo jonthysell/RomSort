@@ -36,10 +36,26 @@ namespace RomSort
     {
         public RomSortApp App { get; private set; }
 
+        public string ProgramName
+        {
+            get
+            {
+                return string.Format("{0} v{1}", Assembly.GetExecutingAssembly().GetName().Name, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            }
+        }
+
+        public string ProgramCopyright
+        {
+            get
+            {
+                return ((AssemblyCopyrightAttribute)(Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), true)[0])).Copyright;
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
-            Text = string.Format("{0} v{1}", Assembly.GetExecutingAssembly().GetName().Name, Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            Text = ProgramName;
             App = new RomSortApp(this);
         }
 
@@ -118,6 +134,11 @@ namespace RomSort
             try
             {
                 SetBusy();
+                string text = string.Join("\n", new string[]{
+                    ProgramName,
+                    ProgramCopyright,
+                });
+                MessageBox.Show(text, Resources.AboutCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -131,7 +152,9 @@ namespace RomSort
 
         private void rootDirTextBox_TextChanged(object sender, EventArgs e)
         {
-            loadButton.Enabled = !string.IsNullOrEmpty(rootDirTextBox.Text);
+            bool enableLoad = !string.IsNullOrEmpty(rootDirTextBox.Text);
+            loadButton.Enabled = enableLoad;
+            loadToolStripMenuItem.Enabled = enableLoad;
         }
 
         private void rootDirTextBox_KeyUp(object sender, KeyEventArgs e)
