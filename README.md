@@ -1,6 +1,10 @@
 # RomSort #
 
-RomSort is a small open-source app to take a directory of files and sort them into alphabetical sub-folders. It was designed to assist the organization of ROM collections which will be browsed on low-resolution screens that limit the number of files visible at once.
+RomSort is a small utility to sort a directory of files into alphabetical sub-directories.
+
+It was designed to assist the organization of ROM collections, particularly for use on flashcarts. Retro consoles typically have lower resolutions, so browsing ROMs on flashcarts can be painful as you can only view so many items on screen at once.
+
+With RomSort, not only can you group your ROMs into convenient alphabetical sub-directories, but you can also set a maximum number of sub-directories, and the app will intelligently coallesce them together.
 
 RomSort is developed in C# for .NET 2.0.
 
