@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 using RomSort.Properties;
@@ -47,7 +48,7 @@ namespace RomSort
                 View.Update(UpdateType.RootDirectory);
             }
         }
-        private string _rootDir;
+        private string _rootDir = "";
 
         public DirectoryNode SourceTree
         {
@@ -62,7 +63,7 @@ namespace RomSort
                 View.Update(UpdateType.SourceTree);
             }
         }
-        private DirectoryNode _sourceTree;
+        private DirectoryNode _sourceTree = null;
 
         public NodeMetrics SourceTreeMetrics { get; private set; }
 
@@ -79,9 +80,11 @@ namespace RomSort
                 View.Update(UpdateType.DestinationTree);
             }
         }
-        private DirectoryNode _destinationTree;
+        private DirectoryNode _destinationTree = null;
 
         public NodeMetrics DestinationTreeMetrics { get; private set; }
+
+        public bool HasConflicts { get; set; } = false;
 
         public RomSortApp(IRomSortAppView view)
         {
@@ -99,15 +102,41 @@ namespace RomSort
 
         public void Load()
         {
-            SourceTree = LoadDirectory(_rootDir);
-            DestinationTree = SourceTree; // TODO
+            DirectoryNode sourceTree = LoadDirectory(RootDir);
+
+            List<FileNode> files;
+            int conflictCount;
+            ProcessTree(sourceTree, out files, out conflictCount);
+
+            HasConflicts = conflictCount > 0;
+
+            SourceTree = sourceTree;
+
+            UpdateDestinationTree();
+        }
+
+        public void UpdateDestinationTree()
+        {
+            if (HasConflicts)
+            {
+                DestinationTree = null;
+            }
+            else
+            {
+
+            }
         }
 
         public void Sort()
         {
             if (string.IsNullOrEmpty(RootDir))
             {
-                throw new ArgumentNullException(nameof(RootDir), "Select a folder first");
+                throw new Exception("Load a valid root directory first.");
+            }
+
+            if (HasConflicts)
+            {
+                throw new Exception("There are file conflicts that must be resolved.");
             }
 
             if (View.PromptForConfirmation(Resources.ExecuteSortConfirmPrompt))
@@ -137,6 +166,51 @@ namespace RomSort
             }
 
             return node;
+        }
+
+        private void ProcessTree(DirectoryNode rootNode, out List<FileNode> files, out int conflictCount)
+        {
+            files = new List<FileNode>();
+            conflictCount = 0;
+
+            Dictionary<string, List<FileNode>> filesByName = new Dictionary<string, List<FileNode>>();
+            GroupFilesByName(rootNode, files, filesByName);
+
+            foreach (KeyValuePair<string, List<FileNode>> kvp in filesByName)
+            {
+                if (kvp.Value.Count > 1)
+                {
+                    foreach (FileNode fn in kvp.Value)
+                    {
+                        fn.IsConflict = true;
+                        conflictCount++;
+                    }
+                }
+            }
+        }
+
+        private void GroupFilesByName(DirectoryNode currentDirectory, List<FileNode> files, Dictionary<string, List<FileNode>> filesByName)
+        {
+            foreach (NodeBase child in currentDirectory.Children)
+            {
+                if (child is DirectoryNode)
+                {
+                    GroupFilesByName(child as DirectoryNode, files, filesByName);
+                }
+                else if (child is FileNode)
+                {
+                    FileNode fn = child as FileNode;
+
+                    string key = fn.Name.ToLower();
+                    if (!filesByName.ContainsKey(key))
+                    {
+                        filesByName[key] = new List<FileNode>();
+                    }
+
+                    filesByName[key].Add(fn);
+                    ListUtils.SortedInsert(files, fn);
+                }
+            }
         }
     }
 }

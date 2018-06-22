@@ -181,18 +181,30 @@ namespace RomSort
                 rootDirTextBox.Text = App.RootDir;
             }
 
-            if ((type & UpdateType.SourceTree) == UpdateType.SourceTree && null != App.SourceTree)
+            if ((type & UpdateType.SourceTree) == UpdateType.SourceTree)
             {
-                PopulateTree(sourceTreeView, App.SourceTree);
-                sourceMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.SourceTreeMetrics.FileCount, App.SourceTreeMetrics.DirectoryCount);
+                sourceTreeView.Nodes.Clear();
+                sourceMetricsLabel.Text = "";
+
+                if (null != App.SourceTree)
+                {
+                    PopulateTree(sourceTreeView.Nodes, App.SourceTree);
+                    sourceMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.SourceTreeMetrics.FileCount, App.SourceTreeMetrics.DirectoryCount);
+                }
             }
 
-            if ((type & UpdateType.DestinationTree) == UpdateType.DestinationTree && null != App.DestinationTree)
+            if ((type & UpdateType.DestinationTree) == UpdateType.DestinationTree)
             {
-                PopulateTree(destinationTreeView, App.DestinationTree);
-                destinationMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.DestinationTreeMetrics.FileCount, App.DestinationTreeMetrics.DirectoryCount);
+                destinationTreeView.Nodes.Clear();
+                destinationMetricsLabel.Text = "";
 
-                sortToolStripMenuItem.Enabled = true;
+                if (null != App.DestinationTree)
+                {
+                    PopulateTree(destinationTreeView.Nodes, App.DestinationTree);
+                    destinationMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.DestinationTreeMetrics.FileCount, App.DestinationTreeMetrics.DirectoryCount);
+
+                    sortToolStripMenuItem.Enabled = true;
+                }
             }
         }
 
@@ -215,21 +227,15 @@ namespace RomSort
             Enabled = true;
         }
 
-        private void PopulateTree(TreeView treeView, DirectoryNode rootNode)
+        private void PopulateTree(TreeNodeCollection viewTarget, DirectoryNode node)
         {
-            treeView.Nodes.Clear();
-            PopulateDirectory(treeView.Nodes, rootNode);
-        }
-
-        private void PopulateDirectory(TreeNodeCollection viewTarget, DirectoryNode parent)
-        {
-            foreach (NodeBase child in parent.Children)
+            foreach (NodeBase child in node.Children)
             {
                 TreeNode tn = viewTarget.Add(child.Name);
 
                 if (child is DirectoryNode)
                 {
-                    PopulateDirectory(tn.Nodes, child as DirectoryNode);
+                    PopulateTree(tn.Nodes, child as DirectoryNode);
                 }
             }
         }

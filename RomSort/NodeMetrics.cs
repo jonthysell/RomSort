@@ -36,6 +36,11 @@ namespace RomSort
 
         public static NodeMetrics GetMetrics(DirectoryNode directoryNode, bool recursive)
         {
+            if (null == directoryNode)
+            {
+                return null;
+            }
+
             NodeMetrics nm = new NodeMetrics();
 
             foreach (NodeBase child in directoryNode.Children)

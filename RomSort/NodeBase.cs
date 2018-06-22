@@ -129,6 +129,8 @@ namespace RomSort
 
     public class FileNode : NodeBase
     {
+        public bool IsConflict { get; set; } = false;
+
         public FileNode(string name, DirectoryNode parent) : base(name)
         {
             Parent = parent ?? throw new ArgumentNullException(nameof(parent));

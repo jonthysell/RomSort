@@ -264,7 +264,6 @@
             this.sourceMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
             this.sourceMetricsLabel.Size = new System.Drawing.Size(460, 36);
             this.sourceMetricsLabel.TabIndex = 2;
-            this.sourceMetricsLabel.Text = "No directory selected.";
             this.sourceMetricsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // sourceLabel
@@ -317,7 +316,6 @@
             this.destinationMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
             this.destinationMetricsLabel.Size = new System.Drawing.Size(454, 36);
             this.destinationMetricsLabel.TabIndex = 3;
-            this.destinationMetricsLabel.Text = "No directory selected.";
             this.destinationMetricsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // destinationLabel
