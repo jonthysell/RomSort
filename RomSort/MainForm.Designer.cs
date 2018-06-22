@@ -55,6 +55,7 @@
             this.sortButton = new System.Windows.Forms.Button();
             this.maxDirectoriesLabel = new System.Windows.Forms.Label();
             this.maxDirectoriesUpDown = new System.Windows.Forms.NumericUpDown();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.menuStrip.SuspendLayout();
             this.mainTablePanel.SuspendLayout();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -147,7 +148,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(221, 30);
             this.aboutToolStripMenuItem.Text = "&About RomSort";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutEventHandler);
             // 
@@ -171,20 +172,20 @@
             this.mainTablePanel.Controls.Add(this.maxDirectoriesUpDown, 2, 2);
             this.mainTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTablePanel.Location = new System.Drawing.Point(0, 35);
-            this.mainTablePanel.Margin = new System.Windows.Forms.Padding(0);
             this.mainTablePanel.Name = "mainTablePanel";
+            this.mainTablePanel.Padding = new System.Windows.Forms.Padding(10);
             this.mainTablePanel.RowCount = 3;
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.mainTablePanel.Size = new System.Drawing.Size(618, 389);
+            this.mainTablePanel.Size = new System.Drawing.Size(618, 367);
             this.mainTablePanel.TabIndex = 1;
             // 
             // rootDirLabel
             // 
             this.rootDirLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.rootDirLabel.AutoSize = true;
-            this.rootDirLabel.Location = new System.Drawing.Point(3, 8);
+            this.rootDirLabel.Location = new System.Drawing.Point(13, 18);
             this.rootDirLabel.Margin = new System.Windows.Forms.Padding(3);
             this.rootDirLabel.Name = "rootDirLabel";
             this.rootDirLabel.Padding = new System.Windows.Forms.Padding(8);
@@ -197,10 +198,10 @@
             // 
             this.rootDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTablePanel.SetColumnSpan(this.rootDirTextBox, 2);
-            this.rootDirTextBox.Location = new System.Drawing.Point(173, 13);
+            this.rootDirTextBox.Location = new System.Drawing.Point(183, 23);
             this.rootDirTextBox.Margin = new System.Windows.Forms.Padding(11);
             this.rootDirTextBox.Name = "rootDirTextBox";
-            this.rootDirTextBox.Size = new System.Drawing.Size(286, 30);
+            this.rootDirTextBox.Size = new System.Drawing.Size(266, 30);
             this.rootDirTextBox.TabIndex = 1;
             this.rootDirTextBox.WordWrap = false;
             this.rootDirTextBox.TextChanged += new System.EventHandler(this.rootDirTextBox_TextChanged);
@@ -211,7 +212,7 @@
             this.openButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.openButton.AutoSize = true;
             this.openButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.openButton.Location = new System.Drawing.Point(473, 3);
+            this.openButton.Location = new System.Drawing.Point(463, 13);
             this.openButton.Name = "openButton";
             this.openButton.Padding = new System.Windows.Forms.Padding(8);
             this.openButton.Size = new System.Drawing.Size(53, 51);
@@ -226,7 +227,7 @@
             this.loadButton.AutoSize = true;
             this.loadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.loadButton.Enabled = false;
-            this.loadButton.Location = new System.Drawing.Point(532, 3);
+            this.loadButton.Location = new System.Drawing.Point(522, 13);
             this.loadButton.Name = "loadButton";
             this.loadButton.Padding = new System.Windows.Forms.Padding(8);
             this.loadButton.Size = new System.Drawing.Size(83, 51);
@@ -239,7 +240,7 @@
             // 
             this.mainTablePanel.SetColumnSpan(this.mainSplitContainer, 5);
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainSplitContainer.Location = new System.Drawing.Point(0, 57);
+            this.mainSplitContainer.Location = new System.Drawing.Point(10, 67);
             this.mainSplitContainer.Margin = new System.Windows.Forms.Padding(0);
             this.mainSplitContainer.Name = "mainSplitContainer";
             // 
@@ -250,8 +251,8 @@
             // mainSplitContainer.Panel2
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.rightPanel);
-            this.mainSplitContainer.Size = new System.Drawing.Size(618, 260);
-            this.mainSplitContainer.SplitterDistance = 309;
+            this.mainSplitContainer.Size = new System.Drawing.Size(598, 218);
+            this.mainSplitContainer.SplitterDistance = 299;
             this.mainSplitContainer.SplitterWidth = 9;
             this.mainSplitContainer.TabIndex = 2;
             // 
@@ -270,18 +271,18 @@
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftPanel.Size = new System.Drawing.Size(309, 260);
+            this.leftPanel.Size = new System.Drawing.Size(299, 218);
             this.leftPanel.TabIndex = 0;
             // 
             // sourceMetricsLabel
             // 
             this.sourceMetricsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.sourceMetricsLabel.AutoSize = true;
-            this.sourceMetricsLabel.Location = new System.Drawing.Point(3, 216);
+            this.sourceMetricsLabel.Location = new System.Drawing.Point(3, 174);
             this.sourceMetricsLabel.Margin = new System.Windows.Forms.Padding(3);
             this.sourceMetricsLabel.Name = "sourceMetricsLabel";
             this.sourceMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.sourceMetricsLabel.Size = new System.Drawing.Size(303, 41);
+            this.sourceMetricsLabel.Size = new System.Drawing.Size(293, 41);
             this.sourceMetricsLabel.TabIndex = 2;
             this.sourceMetricsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -293,7 +294,7 @@
             this.sourceLabel.Margin = new System.Windows.Forms.Padding(3);
             this.sourceLabel.Name = "sourceLabel";
             this.sourceLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.sourceLabel.Size = new System.Drawing.Size(303, 41);
+            this.sourceLabel.Size = new System.Drawing.Size(293, 41);
             this.sourceLabel.TabIndex = 0;
             this.sourceLabel.Text = "Original";
             this.sourceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -303,7 +304,7 @@
             this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sourceTreeView.Location = new System.Drawing.Point(3, 50);
             this.sourceTreeView.Name = "sourceTreeView";
-            this.sourceTreeView.Size = new System.Drawing.Size(303, 160);
+            this.sourceTreeView.Size = new System.Drawing.Size(293, 118);
             this.sourceTreeView.TabIndex = 1;
             // 
             // rightPanel
@@ -321,18 +322,18 @@
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightPanel.Size = new System.Drawing.Size(300, 260);
+            this.rightPanel.Size = new System.Drawing.Size(290, 218);
             this.rightPanel.TabIndex = 0;
             // 
             // destinationMetricsLabel
             // 
             this.destinationMetricsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.destinationMetricsLabel.AutoSize = true;
-            this.destinationMetricsLabel.Location = new System.Drawing.Point(3, 216);
+            this.destinationMetricsLabel.Location = new System.Drawing.Point(3, 174);
             this.destinationMetricsLabel.Margin = new System.Windows.Forms.Padding(3);
             this.destinationMetricsLabel.Name = "destinationMetricsLabel";
             this.destinationMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.destinationMetricsLabel.Size = new System.Drawing.Size(294, 41);
+            this.destinationMetricsLabel.Size = new System.Drawing.Size(284, 41);
             this.destinationMetricsLabel.TabIndex = 3;
             this.destinationMetricsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -344,7 +345,7 @@
             this.destinationLabel.Margin = new System.Windows.Forms.Padding(3);
             this.destinationLabel.Name = "destinationLabel";
             this.destinationLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.destinationLabel.Size = new System.Drawing.Size(294, 41);
+            this.destinationLabel.Size = new System.Drawing.Size(284, 41);
             this.destinationLabel.TabIndex = 1;
             this.destinationLabel.Text = "Sort Preview";
             this.destinationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -354,7 +355,7 @@
             this.destinationTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.destinationTreeView.Location = new System.Drawing.Point(3, 50);
             this.destinationTreeView.Name = "destinationTreeView";
-            this.destinationTreeView.Size = new System.Drawing.Size(294, 160);
+            this.destinationTreeView.Size = new System.Drawing.Size(284, 118);
             this.destinationTreeView.TabIndex = 2;
             // 
             // sortButton
@@ -364,7 +365,7 @@
             this.sortButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainTablePanel.SetColumnSpan(this.sortButton, 2);
             this.sortButton.Enabled = false;
-            this.sortButton.Location = new System.Drawing.Point(473, 327);
+            this.sortButton.Location = new System.Drawing.Point(463, 295);
             this.sortButton.Name = "sortButton";
             this.sortButton.Padding = new System.Windows.Forms.Padding(8);
             this.sortButton.Size = new System.Drawing.Size(142, 51);
@@ -377,11 +378,11 @@
             // 
             this.maxDirectoriesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.maxDirectoriesLabel.AutoSize = true;
-            this.maxDirectoriesLabel.Location = new System.Drawing.Point(165, 320);
+            this.maxDirectoriesLabel.Location = new System.Drawing.Point(175, 288);
             this.maxDirectoriesLabel.Margin = new System.Windows.Forms.Padding(3);
             this.maxDirectoriesLabel.Name = "maxDirectoriesLabel";
             this.maxDirectoriesLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.maxDirectoriesLabel.Size = new System.Drawing.Size(148, 66);
+            this.maxDirectoriesLabel.Size = new System.Drawing.Size(138, 66);
             this.maxDirectoriesLabel.TabIndex = 5;
             this.maxDirectoriesLabel.Text = "Max Directories:";
             this.maxDirectoriesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -390,7 +391,7 @@
             // 
             this.maxDirectoriesUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.maxDirectoriesUpDown.AutoSize = true;
-            this.maxDirectoriesUpDown.Location = new System.Drawing.Point(319, 338);
+            this.maxDirectoriesUpDown.Location = new System.Drawing.Point(319, 306);
             this.maxDirectoriesUpDown.Maximum = new decimal(new int[] {
             27,
             0,
@@ -406,6 +407,14 @@
             0});
             this.maxDirectoriesUpDown.ValueChanged += new System.EventHandler(this.maxDirectoriesUpDown_ValueChanged);
             // 
+            // statusStrip
+            // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.statusStrip.Location = new System.Drawing.Point(0, 402);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(618, 22);
+            this.statusStrip.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -413,6 +422,7 @@
             this.ClientSize = new System.Drawing.Size(618, 424);
             this.Controls.Add(this.mainTablePanel);
             this.Controls.Add(this.menuStrip);
+            this.Controls.Add(this.statusStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -466,6 +476,7 @@
         private System.Windows.Forms.Button sortButton;
         private System.Windows.Forms.Label maxDirectoriesLabel;
         private System.Windows.Forms.NumericUpDown maxDirectoriesUpDown;
+        private System.Windows.Forms.StatusStrip statusStrip;
     }
 }
 
