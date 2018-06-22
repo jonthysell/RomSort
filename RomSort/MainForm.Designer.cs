@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +75,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(618, 35);
+            this.menuStrip.Size = new System.Drawing.Size(618, 33);
             this.menuStrip.TabIndex = 0;
             // 
             // fileToolStripMenuItem
@@ -169,14 +170,14 @@
             this.mainTablePanel.Controls.Add(this.maxDirectoriesLabel, 1, 2);
             this.mainTablePanel.Controls.Add(this.maxDirectoriesUpDown, 2, 2);
             this.mainTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainTablePanel.Location = new System.Drawing.Point(0, 35);
+            this.mainTablePanel.Location = new System.Drawing.Point(0, 33);
             this.mainTablePanel.Name = "mainTablePanel";
             this.mainTablePanel.Padding = new System.Windows.Forms.Padding(10);
             this.mainTablePanel.RowCount = 3;
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.mainTablePanel.Size = new System.Drawing.Size(618, 367);
+            this.mainTablePanel.Size = new System.Drawing.Size(618, 369);
             this.mainTablePanel.TabIndex = 1;
             // 
             // rootDirLabel
@@ -249,7 +250,7 @@
             // mainSplitContainer.Panel2
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.rightPanel);
-            this.mainSplitContainer.Size = new System.Drawing.Size(598, 218);
+            this.mainSplitContainer.Size = new System.Drawing.Size(598, 220);
             this.mainSplitContainer.SplitterDistance = 299;
             this.mainSplitContainer.SplitterWidth = 9;
             this.mainSplitContainer.TabIndex = 2;
@@ -269,14 +270,14 @@
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftPanel.Size = new System.Drawing.Size(299, 218);
+            this.leftPanel.Size = new System.Drawing.Size(299, 220);
             this.leftPanel.TabIndex = 0;
             // 
             // sourceMetricsLabel
             // 
             this.sourceMetricsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.sourceMetricsLabel.AutoSize = true;
-            this.sourceMetricsLabel.Location = new System.Drawing.Point(3, 174);
+            this.sourceMetricsLabel.Location = new System.Drawing.Point(3, 176);
             this.sourceMetricsLabel.Margin = new System.Windows.Forms.Padding(3);
             this.sourceMetricsLabel.Name = "sourceMetricsLabel";
             this.sourceMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
@@ -302,7 +303,7 @@
             this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sourceTreeView.Location = new System.Drawing.Point(3, 50);
             this.sourceTreeView.Name = "sourceTreeView";
-            this.sourceTreeView.Size = new System.Drawing.Size(293, 118);
+            this.sourceTreeView.Size = new System.Drawing.Size(293, 120);
             this.sourceTreeView.TabIndex = 1;
             // 
             // rightPanel
@@ -320,14 +321,14 @@
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightPanel.Size = new System.Drawing.Size(290, 218);
+            this.rightPanel.Size = new System.Drawing.Size(290, 220);
             this.rightPanel.TabIndex = 0;
             // 
             // destinationMetricsLabel
             // 
             this.destinationMetricsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.destinationMetricsLabel.AutoSize = true;
-            this.destinationMetricsLabel.Location = new System.Drawing.Point(3, 174);
+            this.destinationMetricsLabel.Location = new System.Drawing.Point(3, 176);
             this.destinationMetricsLabel.Margin = new System.Windows.Forms.Padding(3);
             this.destinationMetricsLabel.Name = "destinationMetricsLabel";
             this.destinationMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
@@ -353,7 +354,7 @@
             this.destinationTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.destinationTreeView.Location = new System.Drawing.Point(3, 50);
             this.destinationTreeView.Name = "destinationTreeView";
-            this.destinationTreeView.Size = new System.Drawing.Size(284, 118);
+            this.destinationTreeView.Size = new System.Drawing.Size(284, 120);
             this.destinationTreeView.TabIndex = 2;
             // 
             // sortButton
@@ -363,7 +364,7 @@
             this.sortButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainTablePanel.SetColumnSpan(this.sortButton, 2);
             this.sortButton.Enabled = false;
-            this.sortButton.Location = new System.Drawing.Point(463, 295);
+            this.sortButton.Location = new System.Drawing.Point(463, 297);
             this.sortButton.Name = "sortButton";
             this.sortButton.Padding = new System.Windows.Forms.Padding(8);
             this.sortButton.Size = new System.Drawing.Size(142, 51);
@@ -376,7 +377,7 @@
             // 
             this.maxDirectoriesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.maxDirectoriesLabel.AutoSize = true;
-            this.maxDirectoriesLabel.Location = new System.Drawing.Point(175, 288);
+            this.maxDirectoriesLabel.Location = new System.Drawing.Point(175, 290);
             this.maxDirectoriesLabel.Margin = new System.Windows.Forms.Padding(3);
             this.maxDirectoriesLabel.Name = "maxDirectoriesLabel";
             this.maxDirectoriesLabel.Padding = new System.Windows.Forms.Padding(8);
@@ -389,7 +390,7 @@
             // 
             this.maxDirectoriesUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.maxDirectoriesUpDown.AutoSize = true;
-            this.maxDirectoriesUpDown.Location = new System.Drawing.Point(319, 306);
+            this.maxDirectoriesUpDown.Location = new System.Drawing.Point(319, 308);
             this.maxDirectoriesUpDown.Maximum = new decimal(new int[] {
             27,
             0,
@@ -422,11 +423,11 @@
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.statusStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.Text = "RomSort";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
