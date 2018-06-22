@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -259,6 +260,11 @@ namespace RomSort
             foreach (NodeBase child in node.Children)
             {
                 TreeNode tn = viewTarget.Add(child.Name);
+
+                if (child.IsConflict)
+                {
+                    tn.ForeColor = Color.Red;
+                }
 
                 if (child is DirectoryNode)
                 {

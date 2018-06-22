@@ -25,14 +25,13 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace RomSort
 {
     public abstract class NodeBase : IComparable
     {
-        public NodeBase Parent { get; protected set; } = null;
+        public DirectoryNode Parent { get; protected set; } = null;
 
         public string Name { get; protected set; } = "";
 
@@ -58,6 +57,8 @@ namespace RomSort
                 return null == Parent;
             }
         }
+
+        public bool IsConflict { get; set; } = false;
 
         protected NodeBase(string name)
         {

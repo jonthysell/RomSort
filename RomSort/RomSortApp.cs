@@ -211,6 +211,14 @@ namespace RomSort
                     {
                         fn.IsConflict = true;
                         conflictCount++;
+
+                        // Update parents
+                        DirectoryNode parent = fn.Parent;
+                        while (null != parent)
+                        {
+                            parent.IsConflict = true;
+                            parent = parent.Parent;
+                        }
                     }
                 }
             }
