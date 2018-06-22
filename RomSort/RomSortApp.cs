@@ -183,7 +183,23 @@ namespace RomSort
 
             if (View.PromptForConfirmation(Resources.ExecuteSortConfirmPrompt))
             {
+                // Move files
+                foreach (KeyValuePair<FileNode, FileNode> kvp in _sourceToDestinationMap)
+                {
+                    string sourcePath = kvp.Key.FullPath;
+                    string destPath = kvp.Value.FullPath;
 
+                    string destDir = Path.GetDirectoryName(destPath);
+                    if (!Directory.Exists(destDir))
+                    {
+                        Directory.CreateDirectory(destDir);
+                    }
+
+                    File.Move(sourcePath, destPath);
+                }
+
+                // Clear empty directories
+                DeleteEmptyDirectories(DestinationTree.Name);
             }
         }
 
@@ -271,6 +287,22 @@ namespace RomSort
             });
 
             return filenames;
+        }
+
+        private void DeleteEmptyDirectories(string path)
+        {
+            foreach (string dirPath in Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly))
+            {
+                DeleteEmptyDirectories(dirPath);
+            }
+
+            int numFiles = Directory.GetFiles(path, "*", SearchOption.TopDirectoryOnly).Length;
+            int numDirs = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly).Length;
+
+            if (numFiles == 0 && numDirs == 0)
+            {
+                Directory.Delete(path);
+            }            
         }
     }
 }

@@ -108,6 +108,7 @@ namespace RomSort
             {
                 SetBusy();
                 App.Sort();
+                App.Load();
             }
             catch (Exception ex)
             {
@@ -180,15 +181,17 @@ namespace RomSort
         {
             try
             {
+                SetBusy();
+
                 uint maxDirectories = (uint)maxDirectoriesUpDown.Value;
                 App.MaxDirectories = maxDirectories;
 
                 maxDirectoriesUpDown.ValueChanged -= maxDirectoriesUpDown_ValueChanged;
                 maxDirectoriesUpDown.Value = maxDirectories;
-                maxDirectoriesUpDown.ValueChanged += maxDirectoriesUpDown_ValueChanged;
-
-                SetBusy();
+                
                 App.UpdateDestinationTree();
+
+                maxDirectoriesUpDown.ValueChanged += maxDirectoriesUpDown_ValueChanged;
             }
             catch (Exception ex)
             {
