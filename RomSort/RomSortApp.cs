@@ -86,27 +86,36 @@ namespace RomSort
 
         public bool HasConflicts { get; set; } = false;
 
+        public bool CanSort
+        {
+            get
+            {
+                return null != SourceTree && null != DestinationTree && !HasConflicts;
+            }
+        }
+
         public RomSortApp(IRomSortAppView view)
         {
             View = view ?? throw new ArgumentNullException(nameof(view));
         }
 
-        public void Open()
+        public bool Open()
         {
             string rootDir;
             if (View.TryPromptForDirectory(Resources.RootDirectoryPrompt, out rootDir, RootDir))
             {
                 RootDir = rootDir;
+                return true;
             }
+
+            return false;
         }
 
         public void Load()
         {
             DirectoryNode sourceTree = LoadDirectory(RootDir);
 
-            List<FileNode> files;
-            int conflictCount;
-            ProcessTree(sourceTree, out files, out conflictCount);
+            int conflictCount = FlagConflicts(sourceTree);
 
             HasConflicts = conflictCount > 0;
 
@@ -115,7 +124,7 @@ namespace RomSort
             UpdateDestinationTree();
         }
 
-        public void UpdateDestinationTree()
+        private void UpdateDestinationTree()
         {
             if (HasConflicts)
             {
@@ -129,7 +138,7 @@ namespace RomSort
 
         public void Sort()
         {
-            if (string.IsNullOrEmpty(RootDir))
+            if (null == SourceTree)
             {
                 throw new Exception("Load a valid root directory first.");
             }
@@ -168,13 +177,22 @@ namespace RomSort
             return node;
         }
 
-        private void ProcessTree(DirectoryNode rootNode, out List<FileNode> files, out int conflictCount)
+        private int FlagConflicts(DirectoryNode rootNode)
         {
-            files = new List<FileNode>();
-            conflictCount = 0;
+            int conflictCount = 0;
 
             Dictionary<string, List<FileNode>> filesByName = new Dictionary<string, List<FileNode>>();
-            GroupFilesByName(rootNode, files, filesByName);
+
+            rootNode.ForEachFileNode((fn) =>
+            {
+                string key = fn.Name.ToLower();
+                if (!filesByName.ContainsKey(key))
+                {
+                    filesByName[key] = new List<FileNode>();
+                }
+
+                filesByName[key].Add(fn);
+            });
 
             foreach (KeyValuePair<string, List<FileNode>> kvp in filesByName)
             {
@@ -187,30 +205,8 @@ namespace RomSort
                     }
                 }
             }
-        }
 
-        private void GroupFilesByName(DirectoryNode currentDirectory, List<FileNode> files, Dictionary<string, List<FileNode>> filesByName)
-        {
-            foreach (NodeBase child in currentDirectory.Children)
-            {
-                if (child is DirectoryNode)
-                {
-                    GroupFilesByName(child as DirectoryNode, files, filesByName);
-                }
-                else if (child is FileNode)
-                {
-                    FileNode fn = child as FileNode;
-
-                    string key = fn.Name.ToLower();
-                    if (!filesByName.ContainsKey(key))
-                    {
-                        filesByName[key] = new List<FileNode>();
-                    }
-
-                    filesByName[key].Add(fn);
-                    ListUtils.SortedInsert(files, fn);
-                }
-            }
+            return conflictCount;
         }
     }
 }

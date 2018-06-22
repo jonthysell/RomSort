@@ -125,6 +125,26 @@ namespace RomSort
 
             return null;
         }
+
+        public void ForEachFileNode(Action<FileNode> action)
+        {
+            ForEachFileNode(action, this);
+        }
+
+        private void ForEachFileNode(Action<FileNode> action, DirectoryNode currentDirectory)
+        {
+            foreach (NodeBase child in currentDirectory.Children)
+            {
+                if (child is DirectoryNode)
+                {
+                    ForEachFileNode(action, child as DirectoryNode);
+                }
+                else if (child is FileNode)
+                {
+                    action(child as FileNode);
+                }
+            }
+        }
     }
 
     public class FileNode : NodeBase

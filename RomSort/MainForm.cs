@@ -50,8 +50,11 @@ namespace RomSort
             try
             {
                 SetBusy();
-                App.Open();
-                App.Load();
+                App.RootDir = rootDirTextBox.Text;
+                if (App.Open())
+                {
+                    App.Load();
+                }
             }
             catch (Exception ex)
             {
@@ -202,10 +205,10 @@ namespace RomSort
                 {
                     PopulateTree(destinationTreeView.Nodes, App.DestinationTree);
                     destinationMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.DestinationTreeMetrics.FileCount, App.DestinationTreeMetrics.DirectoryCount);
-
-                    sortToolStripMenuItem.Enabled = true;
                 }
             }
+
+            sortToolStripMenuItem.Enabled = App.CanSort;
         }
 
         public void Exit()
