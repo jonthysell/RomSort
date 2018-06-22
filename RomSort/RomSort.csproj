@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlphaFolder.cs" />
+    <Compile Include="AlphaFolderCollection.cs" />
     <Compile Include="ListUtils.cs" />
     <Compile Include="DirectoryNode.cs" />
     <Compile Include="FileNode.cs" />

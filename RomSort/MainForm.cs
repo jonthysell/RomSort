@@ -217,7 +217,8 @@ namespace RomSort
                 if (null != App.SourceTree)
                 {
                     PopulateTree(sourceTreeView.Nodes, App.SourceTree);
-                    sourceMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.SourceTreeMetrics.FileCount, App.SourceTreeMetrics.DirectoryCount);
+                    bool showDirectoryCounts = App.SourceTreeMetrics.DirectoryCount > 0;
+                    sourceMetricsLabel.Text = string.Format(showDirectoryCounts ? Resources.FileDirectoryMetricsLabelFormat : Resources.FileMetricsLabelFormat, App.SourceTreeMetrics.FileCount, App.SourceTreeMetrics.DirectoryCount);
                 }
             }
 
@@ -229,7 +230,8 @@ namespace RomSort
                 if (null != App.DestinationTree)
                 {
                     PopulateTree(destinationTreeView.Nodes, App.DestinationTree);
-                    destinationMetricsLabel.Text = string.Format(Resources.MetricsLabelFormat, App.DestinationTreeMetrics.FileCount, App.DestinationTreeMetrics.DirectoryCount);
+                    bool showDirectoryCounts = App.DestinationTreeMetrics.DirectoryCount > 0;
+                    destinationMetricsLabel.Text = string.Format(showDirectoryCounts ? Resources.FileDirectoryMetricsLabelFormat : Resources.FileMetricsLabelFormat, App.DestinationTreeMetrics.FileCount, App.DestinationTreeMetrics.DirectoryCount);
                 }
             }
 
@@ -268,6 +270,8 @@ namespace RomSort
 
                 if (child is DirectoryNode dn)
                 {
+                    bool showDirectoryCounts = dn.DirectoryCount > 0;
+                    tn.Text += string.Format(string.Format(" [{0}]", showDirectoryCounts ? Resources.FileDirectoryMetricsLabelFormat : Resources.FileMetricsLabelFormat), dn.FileCount, dn.DirectoryCount);
                     PopulateTree(tn.Nodes, dn);
                 }
             }

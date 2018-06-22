@@ -97,11 +97,20 @@ namespace RomSort.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} files in {1} directories.
+        ///   Looks up a localized string similar to {0} files + {1} dirs.
         /// </summary>
-        internal static string MetricsLabelFormat {
+        internal static string FileDirectoryMetricsLabelFormat {
             get {
-                return ResourceManager.GetString("MetricsLabelFormat", resourceCulture);
+                return ResourceManager.GetString("FileDirectoryMetricsLabelFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} files.
+        /// </summary>
+        internal static string FileMetricsLabelFormat {
+            get {
+                return ResourceManager.GetString("FileMetricsLabelFormat", resourceCulture);
             }
         }
         

@@ -94,6 +94,8 @@ namespace RomSort
             }
         }
 
+        private Dictionary<FileNode, FileNode> _sourceToDestinationMap = new Dictionary<FileNode, FileNode>();
+
         public RomSortApp(IRomSortAppView view)
         {
             View = view ?? throw new ArgumentNullException(nameof(view));
@@ -126,13 +128,42 @@ namespace RomSort
 
         private void UpdateDestinationTree()
         {
+            _sourceToDestinationMap.Clear();
+
             if (HasConflicts)
             {
                 DestinationTree = null;
             }
             else
             {
+                Dictionary<string, FileNode> sourceFileNameMap = FileNameMap(SourceTree);
 
+                List<string> fileNames = new List<string>();
+                foreach (string name in sourceFileNameMap.Keys)
+                {
+                    ListUtils.SortedInsert(fileNames, name);
+                }
+
+                AlphaFolderCollection alphaFolders = AlphaFolderCollection.GetAlphaFolders(fileNames, 10);
+
+                DirectoryNode destinationTree = new DirectoryNode(SourceTree.Name);
+
+                foreach (string fileName in fileNames)
+                {
+                    string folderName = alphaFolders.GetFolderNameForFile(fileName);
+
+                    DirectoryNode destinationDir = destinationTree.FindDirectory(folderName);
+                    if (null == destinationDir)
+                    {
+                        destinationDir = (DirectoryNode)destinationTree.AddChildNode(new DirectoryNode(folderName, destinationTree));
+                    }
+
+                    FileNode destinationFile = (FileNode)destinationDir.AddChildNode(new FileNode(fileName, destinationDir));
+
+                    _sourceToDestinationMap.Add(sourceFileNameMap[fileName], destinationFile);
+                }
+
+                DestinationTree = destinationTree;
             }
         }
 
@@ -223,6 +254,21 @@ namespace RomSort
             }
 
             return conflictCount;
+        }
+
+        private Dictionary<string, FileNode> FileNameMap(DirectoryNode rootNode)
+        {
+            Dictionary<string, FileNode> filenames = new Dictionary<string, FileNode>();
+
+            rootNode.ForEachChildNode((child) =>
+            {
+                if (child is FileNode fn)
+                {
+                    filenames.Add(fn.Name, fn);
+                }
+            });
+
+            return filenames;
         }
     }
 }

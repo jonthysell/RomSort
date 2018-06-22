@@ -40,6 +40,10 @@ namespace RomSort
         }
         protected List<NodeBase> _children = new List<NodeBase>();
 
+        public int DirectoryCount { get; private set; } = 0;
+
+        public int FileCount { get; private set; } = 0;
+
         public DirectoryNode(string name, DirectoryNode parent = null) : base(name)
         {
             Parent = parent;
@@ -59,6 +63,15 @@ namespace RomSort
 
             if (ListUtils.SortedInsert(_children, child))
             {
+                if (child is DirectoryNode)
+                {
+                    DirectoryCount++;
+                }
+                else if (child is FileNode)
+                {
+                    FileCount++;
+                }
+
                 return child;
             }
 
@@ -80,6 +93,22 @@ namespace RomSort
                 }
                 action(child);
             }
+        }
+
+        public DirectoryNode FindDirectory(string name)
+        {
+            foreach (NodeBase child in Children)
+            {
+                if (child is DirectoryNode dn)
+                {
+                    if (dn.Name == name)
+                    {
+                        return dn;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }
