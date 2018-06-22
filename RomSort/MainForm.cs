@@ -58,6 +58,7 @@ namespace RomSort
             InitializeComponent();
             Text = ProgramName;
             App = new RomSortApp(this);
+            maxDirectoriesUpDown.Value = App.MaxDirectories;
         }
 
         #region Event Handlers
@@ -154,9 +155,16 @@ namespace RomSort
 
         private void rootDirTextBox_TextChanged(object sender, EventArgs e)
         {
-            bool enableLoad = !string.IsNullOrEmpty(rootDirTextBox.Text);
-            loadButton.Enabled = enableLoad;
-            loadToolStripMenuItem.Enabled = enableLoad;
+            try
+            {
+                bool enableLoad = !string.IsNullOrEmpty(rootDirTextBox.Text);
+                loadButton.Enabled = enableLoad;
+                loadToolStripMenuItem.Enabled = enableLoad;
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
 
         private void rootDirTextBox_KeyUp(object sender, KeyEventArgs e)
@@ -165,6 +173,30 @@ namespace RomSort
             {
                 loadEventHandler(sender, e);
                 e.Handled = true;
+            }
+        }
+
+        private void maxDirectoriesUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                uint maxDirectories = (uint)maxDirectoriesUpDown.Value;
+                App.MaxDirectories = maxDirectories;
+
+                maxDirectoriesUpDown.ValueChanged -= maxDirectoriesUpDown_ValueChanged;
+                maxDirectoriesUpDown.Value = maxDirectories;
+                maxDirectoriesUpDown.ValueChanged += maxDirectoriesUpDown_ValueChanged;
+
+                SetBusy();
+                App.UpdateDestinationTree();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+            finally
+            {
+                SetIdle();
             }
         }
 
@@ -235,6 +267,7 @@ namespace RomSort
                 }
             }
 
+            sortButton.Enabled = App.CanSort;
             sortToolStripMenuItem.Enabled = App.CanSort;
         }
 

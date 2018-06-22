@@ -84,7 +84,9 @@ namespace RomSort
 
         public NodeMetrics DestinationTreeMetrics { get; private set; }
 
-        public bool HasConflicts { get; set; } = false;
+        public uint MaxDirectories { get; set; } = 27;
+
+        public bool HasConflicts { get; private set; } = false;
 
         public bool CanSort
         {
@@ -126,11 +128,11 @@ namespace RomSort
             UpdateDestinationTree();
         }
 
-        private void UpdateDestinationTree()
+        public void UpdateDestinationTree()
         {
             _sourceToDestinationMap.Clear();
 
-            if (HasConflicts)
+            if (null == SourceTree || HasConflicts)
             {
                 DestinationTree = null;
             }
@@ -144,15 +146,15 @@ namespace RomSort
                     ListUtils.SortedInsert(fileNames, name);
                 }
 
-                AlphaFolderCollection alphaFolders = AlphaFolderCollection.GetAlphaFolders(fileNames, 10);
+                AlphaFolderCollection alphaFolders = MaxDirectories > 0 ? AlphaFolderCollection.GetAlphaFolders(fileNames, MaxDirectories) : null;
 
                 DirectoryNode destinationTree = new DirectoryNode(SourceTree.Name);
 
                 foreach (string fileName in fileNames)
                 {
-                    string folderName = alphaFolders.GetFolderNameForFile(fileName);
+                    string folderName = alphaFolders?.GetFolderNameForFile(fileName);
 
-                    DirectoryNode destinationDir = destinationTree.FindDirectory(folderName);
+                    DirectoryNode destinationDir = null != folderName ? destinationTree.FindDirectory(folderName) : destinationTree;
                     if (null == destinationDir)
                     {
                         destinationDir = (DirectoryNode)destinationTree.AddChildNode(new DirectoryNode(folderName, destinationTree));
