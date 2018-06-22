@@ -1,8 +1,8 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 <#
-    int major    = 0;
-    int minor    = 9; // Official == even, Preview == odd
+    int major    = 1;
+    int minor    = 0; // Official == even, Preview == odd
     int build    = 0;
     int revision = 0;
 
