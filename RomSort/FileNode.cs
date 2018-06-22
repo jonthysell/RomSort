@@ -1,5 +1,5 @@
 ﻿// 
-// NodeBase.cs
+// FileNode.cs
 //  
 // Author:
 //       Jon Thysell <thysell@gmail.com>
@@ -24,38 +24,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace RomSort
 {
-    public class NodeMetrics
+    public class FileNode : NodeBase
     {
-        public int DirectoryCount { get; private set; } = 0;
+        public bool IsConflict { get; set; } = false;
 
-        public int FileCount { get; private set; } = 0;
-
-        private NodeMetrics() { }
-
-        public static NodeMetrics GetMetrics(DirectoryNode directoryNode)
+        public FileNode(string name, DirectoryNode parent) : base(name)
         {
-            if (null == directoryNode)
-            {
-                return null;
-            }
-
-            NodeMetrics nm = new NodeMetrics();
-
-            directoryNode.ForEachChildNode((child) =>
-            {
-                if (child is FileNode)
-                {
-                    nm.FileCount++;
-                }
-                else if (child is DirectoryNode)
-                {
-                    nm.DirectoryCount++;
-                }
-            });
-
-            return nm;
+            Parent = parent ?? throw new ArgumentNullException(nameof(parent));
         }
     }
 }

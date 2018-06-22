@@ -59,15 +59,6 @@ namespace RomSort
             }
         }
 
-        public IEnumerable<NodeBase> Children
-        {
-            get
-            {
-                return _children;
-            }
-        }
-        protected List<NodeBase> _children = null;
-
         protected NodeBase(string name)
         {
             Name = string.IsNullOrEmpty(name) ? throw new ArgumentNullException(nameof(name)) : name;
@@ -95,65 +86,6 @@ namespace RomSort
         public override string ToString()
         {
             return Name;
-        }
-    }
-
-    public class DirectoryNode : NodeBase
-    {
-        public DirectoryNode(string name, DirectoryNode parent = null) : base(name)
-        {
-            Parent = parent;
-            _children = new List<NodeBase>();
-        }
-
-        public NodeBase AddChildNode(NodeBase child)
-        {
-            if (null == child)
-            {
-                throw new ArgumentNullException(nameof(child));
-            }
-
-            if (child.Parent != this)
-            {
-                throw new ArgumentException();
-            }
-
-            if (ListUtils.SortedInsert(_children, child))
-            {
-                return child;
-            }
-
-            return null;
-        }
-
-        public void ForEachFileNode(Action<FileNode> action)
-        {
-            ForEachFileNode(action, this);
-        }
-
-        private void ForEachFileNode(Action<FileNode> action, DirectoryNode currentDirectory)
-        {
-            foreach (NodeBase child in currentDirectory.Children)
-            {
-                if (child is DirectoryNode)
-                {
-                    ForEachFileNode(action, child as DirectoryNode);
-                }
-                else if (child is FileNode)
-                {
-                    action(child as FileNode);
-                }
-            }
-        }
-    }
-
-    public class FileNode : NodeBase
-    {
-        public bool IsConflict { get; set; } = false;
-
-        public FileNode(string name, DirectoryNode parent) : base(name)
-        {
-            Parent = parent ?? throw new ArgumentNullException(nameof(parent));
         }
     }
 }

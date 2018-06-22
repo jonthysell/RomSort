@@ -44,7 +44,7 @@ namespace RomSort
             }
             set
             {
-                _rootDir = Path.GetFullPath(value);
+                _rootDir = string.IsNullOrEmpty(value) ? "" : Path.GetFullPath(value);
                 View.Update(UpdateType.RootDirectory);
             }
         }
@@ -59,7 +59,7 @@ namespace RomSort
             private set
             {
                 _sourceTree = value;
-                SourceTreeMetrics = NodeMetrics.GetMetrics(_sourceTree, true);
+                SourceTreeMetrics = NodeMetrics.GetMetrics(_sourceTree);
                 View.Update(UpdateType.SourceTree);
             }
         }
@@ -76,7 +76,7 @@ namespace RomSort
             private set
             {
                 _destinationTree = value;
-                DestinationTreeMetrics = NodeMetrics.GetMetrics(_destinationTree, true);
+                DestinationTreeMetrics = NodeMetrics.GetMetrics(_destinationTree);
                 View.Update(UpdateType.DestinationTree);
             }
         }
@@ -161,6 +161,11 @@ namespace RomSort
 
         private DirectoryNode LoadDirectory(string name, DirectoryNode parent = null)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                return null;
+            }
+
             DirectoryNode node = new DirectoryNode(name, parent);
 
             foreach (string filePath in Directory.GetFiles(node.FullPath, "*", SearchOption.TopDirectoryOnly))
@@ -183,15 +188,19 @@ namespace RomSort
 
             Dictionary<string, List<FileNode>> filesByName = new Dictionary<string, List<FileNode>>();
 
-            rootNode.ForEachFileNode((fn) =>
+            rootNode.ForEachChildNode((child) =>
             {
-                string key = fn.Name.ToLower();
-                if (!filesByName.ContainsKey(key))
+                FileNode fn = child as FileNode;
+                if (null != fn)
                 {
-                    filesByName[key] = new List<FileNode>();
-                }
+                    string key = fn.Name.ToLower();
+                    if (!filesByName.ContainsKey(key))
+                    {
+                        filesByName[key] = new List<FileNode>();
+                    }
 
-                filesByName[key].Add(fn);
+                    filesByName[key].Add(fn);
+                }
             });
 
             foreach (KeyValuePair<string, List<FileNode>> kvp in filesByName)

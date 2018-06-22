@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ListUtils.cs" />
+    <Compile Include="DirectoryNode.cs" />
+    <Compile Include="FileNode.cs" />
     <Compile Include="NodeMetrics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <AutoGen>True</AutoGen>

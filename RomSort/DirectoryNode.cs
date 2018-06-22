@@ -1,5 +1,5 @@
 ﻿// 
-// NodeBase.cs
+// DirectoryNode.cs
 //  
 // Author:
 //       Jon Thysell <thysell@gmail.com>
@@ -24,38 +24,62 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+using System.Collections.Generic;
+
 namespace RomSort
 {
-    public class NodeMetrics
+    public class DirectoryNode : NodeBase
     {
-        public int DirectoryCount { get; private set; } = 0;
-
-        public int FileCount { get; private set; } = 0;
-
-        private NodeMetrics() { }
-
-        public static NodeMetrics GetMetrics(DirectoryNode directoryNode)
+        public IEnumerable<NodeBase> Children
         {
-            if (null == directoryNode)
+            get
             {
-                return null;
+                return _children;
+            }
+        }
+        protected List<NodeBase> _children = new List<NodeBase>();
+
+        public DirectoryNode(string name, DirectoryNode parent = null) : base(name)
+        {
+            Parent = parent;
+        }
+
+        public NodeBase AddChildNode(NodeBase child)
+        {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
             }
 
-            NodeMetrics nm = new NodeMetrics();
-
-            directoryNode.ForEachChildNode((child) =>
+            if (child.Parent != this)
             {
-                if (child is FileNode)
-                {
-                    nm.FileCount++;
-                }
-                else if (child is DirectoryNode)
-                {
-                    nm.DirectoryCount++;
-                }
-            });
+                throw new ArgumentException();
+            }
 
-            return nm;
+            if (ListUtils.SortedInsert(_children, child))
+            {
+                return child;
+            }
+
+            return null;
+        }
+
+        public void ForEachChildNode(Action<NodeBase> action)
+        {
+            ForEachChildNode(action, this);
+        }
+
+        private void ForEachChildNode(Action<NodeBase> action, DirectoryNode currentDirectory)
+        {
+            foreach (NodeBase child in currentDirectory.Children)
+            {
+                if (child is DirectoryNode)
+                {
+                    ForEachChildNode(action, child as DirectoryNode);
+                }
+                action(child);
+            }
         }
     }
 }
