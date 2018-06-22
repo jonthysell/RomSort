@@ -266,9 +266,9 @@ namespace RomSort
                     tn.ForeColor = Color.Red;
                 }
 
-                if (child is DirectoryNode)
+                if (child is DirectoryNode dn)
                 {
-                    PopulateTree(tn.Nodes, child as DirectoryNode);
+                    PopulateTree(tn.Nodes, dn);
                 }
             }
         }

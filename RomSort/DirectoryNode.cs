@@ -74,9 +74,9 @@ namespace RomSort
         {
             foreach (NodeBase child in currentDirectory.Children)
             {
-                if (child is DirectoryNode)
+                if (child is DirectoryNode dn)
                 {
-                    ForEachChildNode(action, child as DirectoryNode);
+                    ForEachChildNode(action, dn);
                 }
                 action(child);
             }

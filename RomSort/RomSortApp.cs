@@ -190,8 +190,7 @@ namespace RomSort
 
             rootNode.ForEachChildNode((child) =>
             {
-                FileNode fn = child as FileNode;
-                if (null != fn)
+                if (child is FileNode fn)
                 {
                     string key = fn.Name.ToLower();
                     if (!filesByName.ContainsKey(key))
