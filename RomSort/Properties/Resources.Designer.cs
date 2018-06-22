@@ -97,7 +97,7 @@ namespace RomSort.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} files in {1} folders.
+        ///   Looks up a localized string similar to {0} files in {1} directories.
         /// </summary>
         internal static string MetricsLabelFormat {
             get {
