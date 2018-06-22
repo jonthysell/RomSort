@@ -134,9 +134,10 @@ namespace RomSort
             try
             {
                 SetBusy();
-                string text = string.Join("\n", new string[]{
+                string text = string.Join("\n\n", new string[]{
                     ProgramName,
                     ProgramCopyright,
+                    Resources.ProgramLicense,
                 });
                 MessageBox.Show(text, Resources.AboutCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
