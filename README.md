@@ -12,4 +12,4 @@ RomSort is developed in C# for .NET 2.0.
 
 RomSort is open-source under the MIT license.
 
-RomSort Copyright (c) 2018 Jon Thysell
+RomSort Copyright (c) 2018-2019 Jon Thysell

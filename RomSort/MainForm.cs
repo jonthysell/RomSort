@@ -4,7 +4,7 @@
 // Author:
 //       Jon Thysell <thysell@gmail.com>
 // 
-// Copyright (c) 2018 Jon Thysell <http://jonthysell.com>
+// Copyright (c) 2018, 2019 Jon Thysell <http://jonthysell.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -41,18 +41,37 @@ namespace RomSort
         {
             get
             {
-                Version version = Assembly.GetExecutingAssembly().GetName().Version;
-                return string.Format("{0} v{1}", Assembly.GetExecutingAssembly().GetName().Name, (version.Build == 0 && version.Revision == 0) ? string.Format("{0}.{1}", version.Major, version.Minor) : Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                if (null == _programName)
+                {
+                    Version version = Assembly.GetExecutingAssembly().GetName().Version;
+
+                    string versionString = string.Format("{0}.{1}", version.Major, version.Minor);
+
+                    if (version.Revision == 0 && version.Build > 0)
+                    {
+                        versionString += string.Format(".{0}", version.Build);
+                    }
+                    else if (version.Revision > 0)
+                    {
+                        versionString += string.Format(".{0}.{1}", version.Build, version.Revision);
+                    }
+
+                    _programName = string.Format("{0} v{1}", Assembly.GetExecutingAssembly().GetName().Name, versionString);
+                }
+
+                return _programName;
             }
         }
+        private string _programName = null;
 
         public string ProgramCopyright
         {
             get
             {
-                return ((AssemblyCopyrightAttribute)(Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), true)[0])).Copyright;
+                return _programCopyright ?? (_programCopyright = ((AssemblyCopyrightAttribute)(Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), true)[0])).Copyright);
             }
         }
+        private string _programCopyright = null;
 
         public MainForm()
         {

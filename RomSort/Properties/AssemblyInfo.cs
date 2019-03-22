@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jon Thysell")]
 [assembly: AssemblyProduct("RomSort")]
-[assembly: AssemblyCopyright("Copyright © Jon Thysell 2018")]
+[assembly: AssemblyCopyright("Copyright © Jon Thysell 2018-2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
