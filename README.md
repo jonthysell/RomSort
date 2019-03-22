@@ -1,4 +1,4 @@
-![RomSort ScreenShot](https://jonthysell.files.wordpress.com/2018/06/romsortscreenshot.png)
+![RomSort ScreenShot](./.github/screenshot.png)
 
 # RomSort #
 
