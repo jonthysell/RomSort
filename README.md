@@ -29,7 +29,7 @@ You should now see the RomSort window running.
 
 ## Usage ##
 
-1. Use File > Open or click the "..." button and select the root directory you want to sort
+1. Use File > Open... or click the "Open" button and select the root directory you want to sort
 2. The file hierarchy should appear under "Original" on the left side of the app
 2. Set "Max Directories" at the bottom of the app to the number of alphabetical sub-directories you want
 3. Verify file hierarchy that appears under "Sort Preview" on the right side of the app
@@ -41,7 +41,7 @@ You should now see the RomSort window running.
 
 Since RomSort moves files into alphabetical sub-directories, it requires that each file (across all sub-directories) has a unique name. Otherwise files with the same name would get overwritten in a non-deterministic way.
 
-Name conflicts are flagged red in the "Original" view. You will need to manually remove the files that you don't want to end up in the final sort, then press the "Load" button to reload the file structure.
+Name conflicts are flagged red in the "Original" view. You will need to manually remove the files that you don't want to end up in the final sort. After you've fixed up the folder, go to File > Refresh.
 
 ## Errata ##
 

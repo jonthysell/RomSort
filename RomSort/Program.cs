@@ -54,7 +54,6 @@ namespace RomSort
             {
                 MessageBox.Show(string.Format(Resources.ExceptionTextFormat, ex.Message, ex.StackTrace), Resources.ExceptionCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
     }
 }
