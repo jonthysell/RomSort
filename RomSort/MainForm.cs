@@ -105,6 +105,24 @@ namespace RomSort
             }
         }
 
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SetBusy();
+                App.Load();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                Update(UpdateType.All);
+            }
+            finally
+            {
+                SetIdle();
+            }
+        }
+
         private void sortEventHandler(object sender, EventArgs e)
         {
             try
@@ -251,6 +269,8 @@ namespace RomSort
                     destinationMetricsLabel.Text = string.Format(showDirectoryCounts ? Resources.FileDirectoryMetricsLabelFormat : Resources.FileMetricsLabelFormat, App.DestinationTreeMetrics.FileCount, App.DestinationTreeMetrics.DirectoryCount);
                 }
             }
+
+            refreshToolStripMenuItem.Enabled = App.SourceProcessed;
 
             sortButton.Enabled = App.CanSort;
             sortToolStripMenuItem.Enabled = App.CanSort;

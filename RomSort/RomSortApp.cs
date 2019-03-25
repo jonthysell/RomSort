@@ -98,11 +98,19 @@ namespace RomSort
 
         public int ConflictCount { get; private set; } = 0;
 
+        public bool SourceProcessed
+        {
+            get
+            {
+                return null != SourceTree && null != DestinationTree;
+            }
+        }
+
         public bool CanSort
         {
             get
             {
-                return null != SourceTree && null != DestinationTree && !HasConflicts;
+                return SourceProcessed && !HasConflicts;
             }
         }
 
