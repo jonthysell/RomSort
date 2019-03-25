@@ -82,6 +82,24 @@ namespace RomSort
             maxDirectoriesUpDown.Value = App.MaxDirectories;
         }
 
+        public void TryLoad(string path)
+        {
+            try
+            {
+                SetBusy();
+                App.TryLoad(path);
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                Update(UpdateType.All);
+            }
+            finally
+            {
+                SetIdle();
+            }
+        }
+
         #region Event Handlers
 
         private void openEventHandler(object sender, EventArgs e)

@@ -42,9 +42,22 @@ namespace RomSort
             {
                 return _rootDir;
             }
-            set
+            private set
             {
-                _rootDir = string.IsNullOrEmpty(value) ? "" : Path.GetFullPath(value);
+                value = value?.Trim();
+                if (Directory.Exists(value))
+                {
+                    _rootDir = Path.GetFullPath(value);
+                }
+                else if (File.Exists(value))
+                {
+                    _rootDir = Path.GetDirectoryName(value);
+                }
+                else
+                {
+                    throw new DirectoryNotFoundException(string.Format("Unable to find path \"{0}\"", value));
+                }
+
                 View.Update(UpdateType.RootDirectory);
             }
         }
@@ -141,9 +154,16 @@ namespace RomSort
             }
             catch (Exception)
             {
+                RootDir = "";
                 SourceTree = null;
                 throw;
             }
+        }
+
+        public void TryLoad(string path)
+        {
+            RootDir = path;
+            Load();
         }
 
         public void UpdateDestinationTree()
