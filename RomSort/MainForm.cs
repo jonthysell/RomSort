@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.IO;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -88,7 +89,6 @@ namespace RomSort
             try
             {
                 SetBusy();
-                App.RootDir = rootDirTextBox.Text;
                 if (App.Open())
                 {
                     App.Load();
@@ -97,24 +97,7 @@ namespace RomSort
             catch (Exception ex)
             {
                 HandleException(ex);
-            }
-            finally
-            {
-                SetIdle();
-            }
-        }
-
-        private void loadEventHandler(object sender, EventArgs e)
-        {
-            try
-            {
-                SetBusy();
-                App.RootDir = rootDirTextBox.Text;
-                App.Load();
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
+                Update(UpdateType.All);
             }
             finally
             {
@@ -133,6 +116,7 @@ namespace RomSort
             catch (Exception ex)
             {
                 HandleException(ex);
+                Update(UpdateType.All);
             }
             finally
             {
@@ -174,29 +158,6 @@ namespace RomSort
             }
         }
 
-        private void rootDirTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                bool enableLoad = !string.IsNullOrEmpty(rootDirTextBox.Text);
-                loadButton.Enabled = enableLoad;
-                loadToolStripMenuItem.Enabled = enableLoad;
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
-        }
-
-        private void rootDirTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                loadEventHandler(sender, e);
-                e.Handled = true;
-            }
-        }
-
         private void maxDirectoriesUpDown_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -216,6 +177,7 @@ namespace RomSort
             catch (Exception ex)
             {
                 HandleException(ex);
+                Update(UpdateType.All);
             }
             finally
             {

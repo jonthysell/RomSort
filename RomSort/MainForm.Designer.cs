@@ -33,7 +33,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +42,6 @@
             this.rootDirLabel = new System.Windows.Forms.Label();
             this.rootDirTextBox = new System.Windows.Forms.TextBox();
             this.openButton = new System.Windows.Forms.Button();
-            this.loadButton = new System.Windows.Forms.Button();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.leftPanel = new System.Windows.Forms.TableLayoutPanel();
             this.sourceMetricsLabel = new System.Windows.Forms.Label();
@@ -75,7 +73,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(618, 33);
+            this.menuStrip.Size = new System.Drawing.Size(624, 24);
             this.menuStrip.TabIndex = 0;
             // 
             // fileToolStripMenuItem
@@ -83,12 +81,11 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.toolStripSeparator,
-            this.loadToolStripMenuItem,
             this.sortToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // openToolStripMenuItem
@@ -96,23 +93,14 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(217, 30);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "&Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openEventHandler);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(214, 6);
-            // 
-            // loadToolStripMenuItem
-            // 
-            this.loadToolStripMenuItem.Enabled = false;
-            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(217, 30);
-            this.loadToolStripMenuItem.Text = "&Load";
-            this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadEventHandler);
+            this.toolStripSeparator.Size = new System.Drawing.Size(177, 6);
             // 
             // sortToolStripMenuItem
             // 
@@ -120,19 +108,19 @@
             this.sortToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
             this.sortToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.sortToolStripMenuItem.Size = new System.Drawing.Size(217, 30);
+            this.sortToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sortToolStripMenuItem.Text = "&Sort";
             this.sortToolStripMenuItem.Click += new System.EventHandler(this.sortEventHandler);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(214, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(217, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitEventHandler);
             // 
@@ -141,13 +129,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 29);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(221, 30);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.aboutToolStripMenuItem.Text = "&About RomSort";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutEventHandler);
             // 
@@ -164,20 +152,20 @@
             this.mainTablePanel.Controls.Add(this.rootDirLabel, 0, 0);
             this.mainTablePanel.Controls.Add(this.rootDirTextBox, 1, 0);
             this.mainTablePanel.Controls.Add(this.openButton, 2, 0);
-            this.mainTablePanel.Controls.Add(this.loadButton, 3, 0);
             this.mainTablePanel.Controls.Add(this.mainSplitContainer, 0, 1);
             this.mainTablePanel.Controls.Add(this.sortButton, 3, 2);
             this.mainTablePanel.Controls.Add(this.maxDirectoriesLabel, 1, 2);
             this.mainTablePanel.Controls.Add(this.maxDirectoriesUpDown, 2, 2);
             this.mainTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainTablePanel.Location = new System.Drawing.Point(0, 33);
+            this.mainTablePanel.Location = new System.Drawing.Point(0, 24);
             this.mainTablePanel.Name = "mainTablePanel";
             this.mainTablePanel.Padding = new System.Windows.Forms.Padding(10);
             this.mainTablePanel.RowCount = 3;
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.mainTablePanel.Size = new System.Drawing.Size(618, 369);
+            this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.mainTablePanel.Size = new System.Drawing.Size(624, 395);
             this.mainTablePanel.TabIndex = 1;
             // 
             // rootDirLabel
@@ -188,7 +176,7 @@
             this.rootDirLabel.Margin = new System.Windows.Forms.Padding(3);
             this.rootDirLabel.Name = "rootDirLabel";
             this.rootDirLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.rootDirLabel.Size = new System.Drawing.Size(156, 41);
+            this.rootDirLabel.Size = new System.Drawing.Size(119, 33);
             this.rootDirLabel.TabIndex = 0;
             this.rootDirLabel.Text = "Root Directory:";
             this.rootDirLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -197,49 +185,34 @@
             // 
             this.rootDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTablePanel.SetColumnSpan(this.rootDirTextBox, 2);
-            this.rootDirTextBox.Location = new System.Drawing.Point(183, 23);
+            this.rootDirTextBox.Location = new System.Drawing.Point(146, 23);
             this.rootDirTextBox.Margin = new System.Windows.Forms.Padding(11);
             this.rootDirTextBox.Name = "rootDirTextBox";
-            this.rootDirTextBox.Size = new System.Drawing.Size(266, 30);
+            this.rootDirTextBox.ReadOnly = true;
+            this.rootDirTextBox.Size = new System.Drawing.Size(382, 23);
             this.rootDirTextBox.TabIndex = 1;
             this.rootDirTextBox.WordWrap = false;
-            this.rootDirTextBox.TextChanged += new System.EventHandler(this.rootDirTextBox_TextChanged);
-            this.rootDirTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.rootDirTextBox_KeyUp);
             // 
             // openButton
             // 
             this.openButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.openButton.AutoSize = true;
             this.openButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.openButton.Location = new System.Drawing.Point(463, 13);
+            this.mainTablePanel.SetColumnSpan(this.openButton, 2);
+            this.openButton.Location = new System.Drawing.Point(542, 13);
             this.openButton.Name = "openButton";
             this.openButton.Padding = new System.Windows.Forms.Padding(8);
-            this.openButton.Size = new System.Drawing.Size(53, 51);
+            this.openButton.Size = new System.Drawing.Size(69, 43);
             this.openButton.TabIndex = 2;
-            this.openButton.Text = "...";
+            this.openButton.Text = "Open";
             this.openButton.UseVisualStyleBackColor = true;
             this.openButton.Click += new System.EventHandler(this.openEventHandler);
-            // 
-            // loadButton
-            // 
-            this.loadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadButton.AutoSize = true;
-            this.loadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.loadButton.Enabled = false;
-            this.loadButton.Location = new System.Drawing.Point(522, 13);
-            this.loadButton.Name = "loadButton";
-            this.loadButton.Padding = new System.Windows.Forms.Padding(8);
-            this.loadButton.Size = new System.Drawing.Size(83, 51);
-            this.loadButton.TabIndex = 3;
-            this.loadButton.Text = "Load";
-            this.loadButton.UseVisualStyleBackColor = true;
-            this.loadButton.Click += new System.EventHandler(this.loadEventHandler);
             // 
             // mainSplitContainer
             // 
             this.mainTablePanel.SetColumnSpan(this.mainSplitContainer, 5);
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainSplitContainer.Location = new System.Drawing.Point(10, 67);
+            this.mainSplitContainer.Location = new System.Drawing.Point(10, 59);
             this.mainSplitContainer.Margin = new System.Windows.Forms.Padding(0);
             this.mainSplitContainer.Name = "mainSplitContainer";
             // 
@@ -250,8 +223,8 @@
             // mainSplitContainer.Panel2
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.rightPanel);
-            this.mainSplitContainer.Size = new System.Drawing.Size(598, 220);
-            this.mainSplitContainer.SplitterDistance = 299;
+            this.mainSplitContainer.Size = new System.Drawing.Size(604, 277);
+            this.mainSplitContainer.SplitterDistance = 302;
             this.mainSplitContainer.SplitterWidth = 9;
             this.mainSplitContainer.TabIndex = 2;
             // 
@@ -270,18 +243,18 @@
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftPanel.Size = new System.Drawing.Size(299, 220);
+            this.leftPanel.Size = new System.Drawing.Size(302, 277);
             this.leftPanel.TabIndex = 0;
             // 
             // sourceMetricsLabel
             // 
             this.sourceMetricsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.sourceMetricsLabel.AutoSize = true;
-            this.sourceMetricsLabel.Location = new System.Drawing.Point(3, 176);
+            this.sourceMetricsLabel.Location = new System.Drawing.Point(3, 241);
             this.sourceMetricsLabel.Margin = new System.Windows.Forms.Padding(3);
             this.sourceMetricsLabel.Name = "sourceMetricsLabel";
             this.sourceMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.sourceMetricsLabel.Size = new System.Drawing.Size(293, 41);
+            this.sourceMetricsLabel.Size = new System.Drawing.Size(296, 33);
             this.sourceMetricsLabel.TabIndex = 2;
             this.sourceMetricsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -293,7 +266,7 @@
             this.sourceLabel.Margin = new System.Windows.Forms.Padding(3);
             this.sourceLabel.Name = "sourceLabel";
             this.sourceLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.sourceLabel.Size = new System.Drawing.Size(293, 41);
+            this.sourceLabel.Size = new System.Drawing.Size(296, 33);
             this.sourceLabel.TabIndex = 0;
             this.sourceLabel.Text = "Original";
             this.sourceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -301,9 +274,9 @@
             // sourceTreeView
             // 
             this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sourceTreeView.Location = new System.Drawing.Point(3, 50);
+            this.sourceTreeView.Location = new System.Drawing.Point(3, 42);
             this.sourceTreeView.Name = "sourceTreeView";
-            this.sourceTreeView.Size = new System.Drawing.Size(293, 120);
+            this.sourceTreeView.Size = new System.Drawing.Size(296, 193);
             this.sourceTreeView.TabIndex = 1;
             // 
             // rightPanel
@@ -321,18 +294,18 @@
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightPanel.Size = new System.Drawing.Size(290, 220);
+            this.rightPanel.Size = new System.Drawing.Size(293, 277);
             this.rightPanel.TabIndex = 0;
             // 
             // destinationMetricsLabel
             // 
             this.destinationMetricsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.destinationMetricsLabel.AutoSize = true;
-            this.destinationMetricsLabel.Location = new System.Drawing.Point(3, 176);
+            this.destinationMetricsLabel.Location = new System.Drawing.Point(3, 241);
             this.destinationMetricsLabel.Margin = new System.Windows.Forms.Padding(3);
             this.destinationMetricsLabel.Name = "destinationMetricsLabel";
             this.destinationMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.destinationMetricsLabel.Size = new System.Drawing.Size(284, 41);
+            this.destinationMetricsLabel.Size = new System.Drawing.Size(287, 33);
             this.destinationMetricsLabel.TabIndex = 3;
             this.destinationMetricsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -344,7 +317,7 @@
             this.destinationLabel.Margin = new System.Windows.Forms.Padding(3);
             this.destinationLabel.Name = "destinationLabel";
             this.destinationLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.destinationLabel.Size = new System.Drawing.Size(284, 41);
+            this.destinationLabel.Size = new System.Drawing.Size(287, 33);
             this.destinationLabel.TabIndex = 1;
             this.destinationLabel.Text = "Sort Preview";
             this.destinationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -352,9 +325,9 @@
             // destinationTreeView
             // 
             this.destinationTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.destinationTreeView.Location = new System.Drawing.Point(3, 50);
+            this.destinationTreeView.Location = new System.Drawing.Point(3, 42);
             this.destinationTreeView.Name = "destinationTreeView";
-            this.destinationTreeView.Size = new System.Drawing.Size(284, 120);
+            this.destinationTreeView.Size = new System.Drawing.Size(287, 193);
             this.destinationTreeView.TabIndex = 2;
             // 
             // sortButton
@@ -364,10 +337,10 @@
             this.sortButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainTablePanel.SetColumnSpan(this.sortButton, 2);
             this.sortButton.Enabled = false;
-            this.sortButton.Location = new System.Drawing.Point(463, 297);
+            this.sortButton.Location = new System.Drawing.Point(542, 339);
             this.sortButton.Name = "sortButton";
             this.sortButton.Padding = new System.Windows.Forms.Padding(8);
-            this.sortButton.Size = new System.Drawing.Size(142, 51);
+            this.sortButton.Size = new System.Drawing.Size(69, 43);
             this.sortButton.TabIndex = 4;
             this.sortButton.Text = "Sort";
             this.sortButton.UseVisualStyleBackColor = true;
@@ -377,11 +350,11 @@
             // 
             this.maxDirectoriesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.maxDirectoriesLabel.AutoSize = true;
-            this.maxDirectoriesLabel.Location = new System.Drawing.Point(175, 290);
+            this.maxDirectoriesLabel.Location = new System.Drawing.Point(138, 344);
             this.maxDirectoriesLabel.Margin = new System.Windows.Forms.Padding(3);
             this.maxDirectoriesLabel.Name = "maxDirectoriesLabel";
             this.maxDirectoriesLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.maxDirectoriesLabel.Size = new System.Drawing.Size(138, 66);
+            this.maxDirectoriesLabel.Size = new System.Drawing.Size(196, 33);
             this.maxDirectoriesLabel.TabIndex = 5;
             this.maxDirectoriesLabel.Text = "Max Directories:";
             this.maxDirectoriesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -390,14 +363,14 @@
             // 
             this.maxDirectoriesUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.maxDirectoriesUpDown.AutoSize = true;
-            this.maxDirectoriesUpDown.Location = new System.Drawing.Point(319, 308);
+            this.maxDirectoriesUpDown.Location = new System.Drawing.Point(340, 349);
             this.maxDirectoriesUpDown.Maximum = new decimal(new int[] {
             27,
             0,
             0,
             0});
             this.maxDirectoriesUpDown.Name = "maxDirectoriesUpDown";
-            this.maxDirectoriesUpDown.Size = new System.Drawing.Size(58, 30);
+            this.maxDirectoriesUpDown.Size = new System.Drawing.Size(40, 23);
             this.maxDirectoriesUpDown.TabIndex = 6;
             this.maxDirectoriesUpDown.Value = new decimal(new int[] {
             1,
@@ -409,16 +382,16 @@
             // statusStrip
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.statusStrip.Location = new System.Drawing.Point(0, 402);
+            this.statusStrip.Location = new System.Drawing.Point(0, 419);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(618, 22);
+            this.statusStrip.Size = new System.Drawing.Size(624, 22);
             this.statusStrip.TabIndex = 2;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 424);
+            this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.mainTablePanel);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.statusStrip);
@@ -461,7 +434,6 @@
         private System.Windows.Forms.Label rootDirLabel;
         private System.Windows.Forms.TextBox rootDirTextBox;
         private System.Windows.Forms.Button openButton;
-        private System.Windows.Forms.Button loadButton;
         private System.Windows.Forms.SplitContainer mainSplitContainer;
         private System.Windows.Forms.TableLayoutPanel leftPanel;
         private System.Windows.Forms.Label sourceLabel;
@@ -471,7 +443,6 @@
         private System.Windows.Forms.TreeView destinationTreeView;
         private System.Windows.Forms.Label sourceMetricsLabel;
         private System.Windows.Forms.Label destinationMetricsLabel;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.Button sortButton;
         private System.Windows.Forms.Label maxDirectoriesLabel;
         private System.Windows.Forms.NumericUpDown maxDirectoriesUpDown;

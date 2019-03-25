@@ -4,7 +4,7 @@
 // Author:
 //       Jon Thysell <thysell@gmail.com>
 // 
-// Copyright (c) 2018 Jon Thysell <http://jonthysell.com>
+// Copyright (c) 2018, 2019 Jon Thysell <http://jonthysell.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -59,8 +59,10 @@ namespace RomSort
             private set
             {
                 _sourceTree = value;
+                FlagConflicts();
                 SourceTreeMetrics = NodeMetrics.GetMetrics(_sourceTree);
                 View.Update(UpdateType.SourceTree);
+                UpdateDestinationTree();
             }
         }
         private DirectoryNode _sourceTree = null;
@@ -86,7 +88,15 @@ namespace RomSort
 
         public uint MaxDirectories { get; set; } = 27;
 
-        public bool HasConflicts { get; private set; } = false;
+        public bool HasConflicts
+        {
+            get
+            {
+                return ConflictCount > 0;
+            }
+        }
+
+        public int ConflictCount { get; private set; } = 0;
 
         public bool CanSort
         {
@@ -117,15 +127,15 @@ namespace RomSort
 
         public void Load()
         {
-            DirectoryNode sourceTree = LoadDirectory(RootDir);
-
-            int conflictCount = FlagConflicts(sourceTree);
-
-            HasConflicts = conflictCount > 0;
-
-            SourceTree = sourceTree;
-
-            UpdateDestinationTree();
+            try
+            {
+                SourceTree = LoadDirectory(RootDir);
+            }
+            catch (Exception)
+            {
+                SourceTree = null;
+                throw;
+            }
         }
 
         public void UpdateDestinationTree()
@@ -231,13 +241,13 @@ namespace RomSort
             return node;
         }
 
-        private int FlagConflicts(DirectoryNode rootNode)
+        private void FlagConflicts()
         {
-            int conflictCount = 0;
+            ConflictCount = 0;
 
             Dictionary<string, List<FileNode>> filesByName = new Dictionary<string, List<FileNode>>();
 
-            rootNode.ForEachChildNode((child) =>
+            SourceTree?.ForEachChildNode((child) =>
             {
                 if (child is FileNode fn)
                 {
@@ -258,7 +268,7 @@ namespace RomSort
                     foreach (FileNode fn in kvp.Value)
                     {
                         fn.IsConflict = true;
-                        conflictCount++;
+                        ConflictCount++;
 
                         // Update parents
                         DirectoryNode parent = fn.Parent;
@@ -270,8 +280,6 @@ namespace RomSort
                     }
                 }
             }
-
-            return conflictCount;
         }
 
         private Dictionary<string, FileNode> FileNameMap(DirectoryNode rootNode)
