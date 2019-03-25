@@ -33,6 +33,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,6 @@
             this.maxDirectoriesLabel = new System.Windows.Forms.Label();
             this.maxDirectoriesUpDown = new System.Windows.Forms.NumericUpDown();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.mainTablePanel.SuspendLayout();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -95,14 +95,22 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.openToolStripMenuItem.Text = "&Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openEventHandler);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(152, 6);
+            // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.refreshToolStripMenuItem.Text = "&Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
             // sortToolStripMenuItem
             // 
@@ -110,19 +118,19 @@
             this.sortToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
             this.sortToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.sortToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sortToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.sortToolStripMenuItem.Text = "&Sort";
             this.sortToolStripMenuItem.Click += new System.EventHandler(this.sortEventHandler);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitEventHandler);
             // 
@@ -185,6 +193,7 @@
             // 
             // rootDirTextBox
             // 
+            this.rootDirTextBox.AllowDrop = true;
             this.rootDirTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.mainTablePanel.SetColumnSpan(this.rootDirTextBox, 2);
             this.rootDirTextBox.Location = new System.Drawing.Point(146, 23);
@@ -194,6 +203,8 @@
             this.rootDirTextBox.Size = new System.Drawing.Size(382, 23);
             this.rootDirTextBox.TabIndex = 1;
             this.rootDirTextBox.WordWrap = false;
+            this.rootDirTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragDropEventHandler);
+            this.rootDirTextBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.dragEnterEventHandler);
             // 
             // openButton
             // 
@@ -275,11 +286,14 @@
             // 
             // sourceTreeView
             // 
+            this.sourceTreeView.AllowDrop = true;
             this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sourceTreeView.Location = new System.Drawing.Point(3, 42);
             this.sourceTreeView.Name = "sourceTreeView";
             this.sourceTreeView.Size = new System.Drawing.Size(296, 193);
             this.sourceTreeView.TabIndex = 1;
+            this.sourceTreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragDropEventHandler);
+            this.sourceTreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.dragEnterEventHandler);
             // 
             // rightPanel
             // 
@@ -388,14 +402,6 @@
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(624, 22);
             this.statusStrip.TabIndex = 2;
-            // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.refreshToolStripMenuItem.Text = "&Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
             // MainForm
             // 

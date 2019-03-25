@@ -25,7 +25,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.IO;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -148,6 +147,43 @@ namespace RomSort
                 SetBusy();
                 App.Sort();
                 App.Load();
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                Update(UpdateType.All);
+            }
+            finally
+            {
+                SetIdle();
+            }
+        }
+
+        private void dragEnterEventHandler(object sender, DragEventArgs e)
+        {
+            try
+            {
+                if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                {
+                    e.Effect = DragDropEffects.Copy;
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void dragDropEventHandler(object sender, DragEventArgs e)
+        {
+            try
+            {
+                SetBusy();
+
+                if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Data.GetData(DataFormats.FileDrop) is string[] files && null != files && files.Length > 0)
+                {
+                    App.TryLoad(files[0]);
+                }
             }
             catch (Exception ex)
             {
