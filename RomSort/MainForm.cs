@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.IO;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
@@ -289,7 +290,7 @@ namespace RomSort
         {
             try
             {
-                if (sourceTreeView.SelectedNode.Tag is NodeBase node)
+                if (sourceTreeView.SelectedNode?.Tag is NodeBase node)
                 {
                     OpenNode(node);
                 }
@@ -300,13 +301,41 @@ namespace RomSort
             }
         }
 
+        private void deleteNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SetBusy();
+
+                if (sourceTreeView.SelectedNode?.Tag is NodeBase node)
+                {
+                    PromptToDeleteNode(node);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+            finally
+            {
+                SetIdle();
+            }
+        }
+
         private void sourceTreeView_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if (e.KeyCode == Keys.Enter && sourceTreeView.SelectedNode.Tag is NodeBase node)
+                if (sourceTreeView.SelectedNode?.Tag is NodeBase node)
                 {
-                    OpenNode(node);
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        OpenNode(node);
+                    }
+                    else if (e.KeyCode == Keys.Delete)
+                    {
+                        PromptToDeleteNode(node);
+                    }
                 }
             }
             catch (Exception ex)
@@ -351,6 +380,13 @@ namespace RomSort
 
         public void Update(UpdateType type)
         {
+            bool wasEnabled = Enabled;
+
+            if (wasEnabled)
+            {
+                SetBusy();
+            }
+
             if ((type & UpdateType.RootDirectory) == UpdateType.RootDirectory)
             {
                 rootDirTextBox.Text = App.RootDir;
@@ -388,6 +424,11 @@ namespace RomSort
 
             sortButton.Enabled = App.CanSort;
             sortToolStripMenuItem.Enabled = App.CanSort;
+
+            if (wasEnabled)
+            {
+                SetIdle();
+            }
         }
 
         public void Exit()
@@ -465,6 +506,35 @@ namespace RomSort
             }
         }
 
-        
+        private void PromptToDeleteNode(NodeBase node)
+        {
+            bool reload = false;
+
+            try
+            {
+                if (reload = PromptForConfirmation(string.Format(Resources.DeleteNodePromptFormat, node.FullPath)))
+                {
+                    if (node is DirectoryNode)
+                    {
+                        Directory.Delete(node.FullPath, true);
+                    }
+                    else
+                    {
+                        File.Delete(node.FullPath);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+            finally
+            {
+                if (reload)
+                {
+                    App.Load();
+                }
+            }
+        }
     }
 }

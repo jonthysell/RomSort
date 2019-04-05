@@ -152,4 +152,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <data name="RootDirectoryPrompt" xml:space="preserve">
     <value>Select root directory</value>
   </data>
+  <data name="DeleteNodePromptFormat" xml:space="preserve">
+    <value>Are you sure you want to delete "{0}"? This operation cannot be undone.</value>
+  </data>
 </root>

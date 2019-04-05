@@ -70,6 +70,15 @@ namespace RomSort.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete &quot;{0}&quot;? This operation cannot be undone..
+        /// </summary>
+        internal static string DeleteNodePromptFormat {
+            get {
+                return ResourceManager.GetString("DeleteNodePromptFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception.
         /// </summary>
         internal static string ExceptionCaption {

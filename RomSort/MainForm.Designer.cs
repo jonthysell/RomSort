@@ -59,6 +59,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.nodesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.mainTablePanel.SuspendLayout();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -413,16 +414,24 @@
             // nodesContextMenuStrip
             // 
             this.nodesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openNodeToolStripMenuItem});
+            this.openNodeToolStripMenuItem,
+            this.deleteNodeToolStripMenuItem});
             this.nodesContextMenuStrip.Name = "nodesContextMenuStrip";
-            this.nodesContextMenuStrip.Size = new System.Drawing.Size(104, 26);
+            this.nodesContextMenuStrip.Size = new System.Drawing.Size(181, 70);
             // 
             // openNodeToolStripMenuItem
             // 
             this.openNodeToolStripMenuItem.Name = "openNodeToolStripMenuItem";
-            this.openNodeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openNodeToolStripMenuItem.Text = "&Open";
             this.openNodeToolStripMenuItem.Click += new System.EventHandler(this.openNodeToolStripMenuItem_Click);
+            // 
+            // deleteNodeToolStripMenuItem
+            // 
+            this.deleteNodeToolStripMenuItem.Name = "deleteNodeToolStripMenuItem";
+            this.deleteNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteNodeToolStripMenuItem.Text = "&Delete";
+            this.deleteNodeToolStripMenuItem.Click += new System.EventHandler(this.deleteNodeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -488,6 +497,7 @@
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip nodesContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem openNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteNodeToolStripMenuItem;
     }
 }
 
