@@ -33,6 +33,14 @@ namespace RomSort
 {
     public class Program
     {
+        public static bool IsRunningOnMono
+        {
+            get
+            {
+                return null != Type.GetType("Mono.Runtime");
+            }
+        }
+
         [STAThread]
         public static void Main(string[] args)
         {

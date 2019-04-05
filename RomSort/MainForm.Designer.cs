@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +57,8 @@
             this.maxDirectoriesLabel = new System.Windows.Forms.Label();
             this.maxDirectoriesUpDown = new System.Windows.Forms.NumericUpDown();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.nodesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.mainTablePanel.SuspendLayout();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -64,6 +67,7 @@
             this.leftPanel.SuspendLayout();
             this.rightPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxDirectoriesUpDown)).BeginInit();
+            this.nodesContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -292,8 +296,11 @@
             this.sourceTreeView.Name = "sourceTreeView";
             this.sourceTreeView.Size = new System.Drawing.Size(296, 193);
             this.sourceTreeView.TabIndex = 1;
+            this.sourceTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.sourceTreeView_NodeMouseClick);
+            this.sourceTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.sourceTreeView_NodeMouseDoubleClick);
             this.sourceTreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragDropEventHandler);
             this.sourceTreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.dragEnterEventHandler);
+            this.sourceTreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sourceTreeView_KeyDown);
             // 
             // rightPanel
             // 
@@ -403,6 +410,20 @@
             this.statusStrip.Size = new System.Drawing.Size(624, 22);
             this.statusStrip.TabIndex = 2;
             // 
+            // nodesContextMenuStrip
+            // 
+            this.nodesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openNodeToolStripMenuItem});
+            this.nodesContextMenuStrip.Name = "nodesContextMenuStrip";
+            this.nodesContextMenuStrip.Size = new System.Drawing.Size(104, 26);
+            // 
+            // openNodeToolStripMenuItem
+            // 
+            this.openNodeToolStripMenuItem.Name = "openNodeToolStripMenuItem";
+            this.openNodeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openNodeToolStripMenuItem.Text = "&Open";
+            this.openNodeToolStripMenuItem.Click += new System.EventHandler(this.openNodeToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -430,6 +451,7 @@
             this.rightPanel.ResumeLayout(false);
             this.rightPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxDirectoriesUpDown)).EndInit();
+            this.nodesContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -464,6 +486,8 @@
         private System.Windows.Forms.NumericUpDown maxDirectoriesUpDown;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip nodesContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem openNodeToolStripMenuItem;
     }
 }
 
