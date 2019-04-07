@@ -115,7 +115,7 @@ namespace RomSort
         {
             get
             {
-                return null != SourceTree && null != DestinationTree;
+                return null != SourceTree;
             }
         }
 
@@ -123,7 +123,7 @@ namespace RomSort
         {
             get
             {
-                return SourceProcessed && !HasConflicts;
+                return null != SourceTree && null != DestinationTree && !HasConflicts;
             }
         }
 
@@ -221,6 +221,11 @@ namespace RomSort
 
             if (View.PromptForConfirmation(Resources.ExecuteSortConfirmPrompt))
             {
+                if (!ValidateDiskMatchesDirectoryNode(SourceTree))
+                {
+                    throw new Exception("The files on disk have changed, please refresh and try again.");
+                }
+
                 // Move files
                 foreach (KeyValuePair<FileNode, FileNode> kvp in _sourceToDestinationMap)
                 {
@@ -237,7 +242,12 @@ namespace RomSort
                 }
 
                 // Clear empty directories
-                DeleteEmptyDirectories(DestinationTree.Name);
+                DeleteEmptyDirectories(DestinationTree.FullPath);
+
+                if (!ValidateDiskMatchesDirectoryNode(DestinationTree))
+                {
+                    throw new Exception("The files on disk do not match the intended sort, please refresh and try again.");
+                }
             }
         }
 
@@ -308,6 +318,49 @@ namespace RomSort
                     }
                 }
             }
+        }
+
+        private bool ValidateDiskMatchesDirectoryNode(DirectoryNode directoryNode)
+        {
+            if (!Directory.Exists(directoryNode.FullPath))
+            {
+                return false;
+            }
+
+            int fileNodeCount = 0;
+            int dirNodeCount = 0;
+
+            foreach (NodeBase node in directoryNode.Children)
+            {
+                if (node is FileNode fn)
+                {
+                    if (!ValidateDiskMatchesFileNode(fn))
+                    {
+                        return false;
+                    }
+
+                    fileNodeCount++;
+                }
+                else if (node is DirectoryNode dn)
+                {
+                    if (!ValidateDiskMatchesDirectoryNode(dn))
+                    {
+                        return false;
+                    }
+
+                    dirNodeCount++;
+                }
+            }
+
+            int fileCount = Directory.GetFiles(directoryNode.FullPath, "*", SearchOption.TopDirectoryOnly).Length;
+            int dirCount = Directory.GetDirectories(directoryNode.FullPath, "*", SearchOption.TopDirectoryOnly).Length;
+
+            return fileNodeCount == fileCount && dirNodeCount == dirCount;
+        }
+
+        private bool ValidateDiskMatchesFileNode(FileNode fileNode)
+        {
+            return File.Exists(fileNode.FullPath);
         }
 
         private Dictionary<string, FileNode> FileNameMap(DirectoryNode rootNode)
