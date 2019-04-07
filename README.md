@@ -4,7 +4,7 @@
 
 RomSort is a small utility to sort a directory of files into alphabetical sub-directories.
 
-It was designed to assist the organization of ROM collections, particularly for use on flashcarts. Retro consoles typically have lower resolutions, so browsing ROMs on flashcarts can be painful as you can only view so many items on screen at once.
+It was designed to assist in the organization of ROM collections, particularly for use on flashcarts. Retro consoles typically have lower resolutions, so browsing ROMs on flashcarts can be painful as you can only view so many items on screen at once.
 
 With RomSort, not only can you group your ROMs into convenient alphabetical sub-directories, but you can also set a maximum number of sub-directories, and the app will intelligently coalesce them together.
 
@@ -37,11 +37,19 @@ You should now see the RomSort window running.
 
 **Note:** RomSort will create a completely new directory hierarchy under the root directory, *exactly* as shown in the preview. It will remove (delete) all other existing directories. There is no way to "undo" a sort, so make sure the preview is exactly what you want before you click the "Sort" button.
 
+### Making Modifications ###
+
+Right-clicking on a folder or file will bring up a context-menu of useful operations:
+
+1. "Open Location" will open the File Explorer to the location of that item.
+2. "Rename" will prompt you to rename that item.
+3. "Delete" will prompt you to delete that item.
+
 ### Name Conflicts ###
 
-Since RomSort moves files into alphabetical sub-directories, it requires that each file (across all sub-directories) has a unique name. Otherwise files with the same name would get overwritten in a non-deterministic way.
+Since RomSort moves files into alphabetical sub-directories, it requires that each file has a unique name. Otherwise, RomSort would end up overwriting files as it moved them.
 
-Name conflicts are flagged red in the "Original" view. You will need to manually remove the files that you don't want to end up in the final sort. After you've fixed up the folder, go to File > Refresh.
+Name conflicts are flagged red in the "Original" view. You will need to rename or remove the conflicting files. You can either use the right-click context-menu within RomSort or perform the operation, or do so manually in the File Explorer. If you've made manually changes to the files on disk, be sure to run File > Refresh to verify that the conflicts have been resolved.
 
 ## Errata ##
 
