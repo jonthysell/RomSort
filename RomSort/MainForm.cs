@@ -271,11 +271,11 @@ namespace RomSort
             }
         }
 
-        private void sourceTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void openNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                if (e.Node.Tag is NodeBase node)
+                if (sourceTreeView.SelectedNode?.Tag is NodeBase node)
                 {
                     OpenNode(node);
                 }
@@ -286,13 +286,17 @@ namespace RomSort
             }
         }
 
-        private void openNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void renameNodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 if (sourceTreeView.SelectedNode?.Tag is NodeBase node)
                 {
-                    OpenNode(node);
+                    if (!sourceTreeView.SelectedNode.IsEditing)
+                    {
+                        sourceTreeView.LabelEdit = true;
+                        sourceTreeView.SelectedNode.BeginEdit();
+                    }
                 }
             }
             catch (Exception ex)
@@ -322,15 +326,19 @@ namespace RomSort
             }
         }
 
-        private void sourceTreeView_KeyDown(object sender, KeyEventArgs e)
+        private void sourceTreeView_KeyUp(object sender, KeyEventArgs e)
         {
             try
             {
                 if (sourceTreeView.SelectedNode?.Tag is NodeBase node)
                 {
-                    if (e.KeyCode == Keys.Enter)
+                    if (e.KeyCode == Keys.F2)
                     {
-                        OpenNode(node);
+                        if (!sourceTreeView.SelectedNode.IsEditing)
+                        {
+                            sourceTreeView.LabelEdit = true;
+                            sourceTreeView.SelectedNode.BeginEdit();
+                        }
                     }
                     else if (e.KeyCode == Keys.Delete)
                     {
@@ -341,7 +349,31 @@ namespace RomSort
             catch (Exception ex)
             {
                 HandleException(ex);
-            } 
+            }
+        }
+
+        private void sourceTreeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            try
+            {
+                SetBusy();
+
+                if (null != e.Label && e.Node.Tag is NodeBase node)
+                {
+                    RenameNode(node, e.Label);
+                    App.Load();
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+            finally
+            {
+                e.CancelEdit = true;
+                sourceTreeView.LabelEdit = false;
+                SetIdle();
+            }
         }
 
         #endregion
@@ -394,8 +426,13 @@ namespace RomSort
 
             if ((type & UpdateType.SourceTree) == UpdateType.SourceTree)
             {
+                sourceTreeView.LabelEdit = false;
+
+                sourceTreeView.BeginUpdate();
+
                 sourceTreeView.Nodes.Clear();
                 sourceTreeView.SelectedNode = null;
+
                 sourceMetricsLabel.Text = "";
 
                 if (null != App.SourceTree)
@@ -404,12 +441,17 @@ namespace RomSort
                     bool showDirectoryCounts = App.SourceTreeMetrics.DirectoryCount > 0;
                     sourceMetricsLabel.Text = string.Format(showDirectoryCounts ? Resources.FileDirectoryMetricsLabelFormat : Resources.FileMetricsLabelFormat, App.SourceTreeMetrics.FileCount, App.SourceTreeMetrics.DirectoryCount);
                 }
+
+                sourceTreeView.EndUpdate();
             }
 
             if ((type & UpdateType.DestinationTree) == UpdateType.DestinationTree)
             {
+                destinationTreeView.BeginUpdate();
+
                 destinationTreeView.Nodes.Clear();
                 destinationTreeView.SelectedNode = null;
+
                 destinationMetricsLabel.Text = "";
 
                 if (null != App.DestinationTree)
@@ -418,6 +460,8 @@ namespace RomSort
                     bool showDirectoryCounts = App.DestinationTreeMetrics.DirectoryCount > 0;
                     destinationMetricsLabel.Text = string.Format(showDirectoryCounts ? Resources.FileDirectoryMetricsLabelFormat : Resources.FileMetricsLabelFormat, App.DestinationTreeMetrics.FileCount, App.DestinationTreeMetrics.DirectoryCount);
                 }
+
+                destinationTreeView.EndUpdate();
             }
 
             refreshToolStripMenuItem.Enabled = App.SourceProcessed;
@@ -454,7 +498,10 @@ namespace RomSort
         {
             foreach (NodeBase child in node.Children)
             {
-                TreeNode tn = viewTarget.Add(child.Name);
+                TreeNode tn = new TreeNode(child.Name);
+                tn.ToolTipText = child.FullPath;
+
+                viewTarget.Add(tn);
 
                 tn.Tag = child;
 
@@ -534,6 +581,35 @@ namespace RomSort
                 {
                     App.Load();
                 }
+            }
+        }
+
+        private void RenameNode(NodeBase node, string newName)
+        {
+            try
+            {
+                newName = newName?.Trim();
+
+                if (string.IsNullOrEmpty(newName))
+                {
+                    throw new ArgumentNullException(nameof(newName));
+                }
+
+                string oldPath = node.FullPath;
+                string newPath = Path.Combine(node.Parent.FullPath, newName);
+
+                if (node is DirectoryNode)
+                {
+                    Directory.Move(oldPath, newPath);
+                }
+                else
+                {
+                    File.Move(oldPath, newPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(string.Format(Resources.RenameFailedExceptionTextFormat, node.Name, newName), ex);
             }
         }
     }

@@ -59,6 +59,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.nodesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.mainTablePanel.SuspendLayout();
@@ -79,7 +80,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(624, 24);
+            this.menuStrip.Size = new System.Drawing.Size(604, 24);
             this.menuStrip.TabIndex = 0;
             // 
             // fileToolStripMenuItem
@@ -180,7 +181,7 @@
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.mainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.mainTablePanel.Size = new System.Drawing.Size(624, 395);
+            this.mainTablePanel.Size = new System.Drawing.Size(604, 395);
             this.mainTablePanel.TabIndex = 1;
             // 
             // rootDirLabel
@@ -205,7 +206,7 @@
             this.rootDirTextBox.Margin = new System.Windows.Forms.Padding(11);
             this.rootDirTextBox.Name = "rootDirTextBox";
             this.rootDirTextBox.ReadOnly = true;
-            this.rootDirTextBox.Size = new System.Drawing.Size(382, 23);
+            this.rootDirTextBox.Size = new System.Drawing.Size(362, 23);
             this.rootDirTextBox.TabIndex = 1;
             this.rootDirTextBox.WordWrap = false;
             this.rootDirTextBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragDropEventHandler);
@@ -217,7 +218,7 @@
             this.openButton.AutoSize = true;
             this.openButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainTablePanel.SetColumnSpan(this.openButton, 2);
-            this.openButton.Location = new System.Drawing.Point(542, 13);
+            this.openButton.Location = new System.Drawing.Point(522, 13);
             this.openButton.Name = "openButton";
             this.openButton.Padding = new System.Windows.Forms.Padding(8);
             this.openButton.Size = new System.Drawing.Size(69, 43);
@@ -241,8 +242,8 @@
             // mainSplitContainer.Panel2
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.rightPanel);
-            this.mainSplitContainer.Size = new System.Drawing.Size(604, 277);
-            this.mainSplitContainer.SplitterDistance = 302;
+            this.mainSplitContainer.Size = new System.Drawing.Size(584, 277);
+            this.mainSplitContainer.SplitterDistance = 292;
             this.mainSplitContainer.SplitterWidth = 9;
             this.mainSplitContainer.TabIndex = 2;
             // 
@@ -261,7 +262,7 @@
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.leftPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.leftPanel.Size = new System.Drawing.Size(302, 277);
+            this.leftPanel.Size = new System.Drawing.Size(292, 277);
             this.leftPanel.TabIndex = 0;
             // 
             // sourceMetricsLabel
@@ -272,7 +273,7 @@
             this.sourceMetricsLabel.Margin = new System.Windows.Forms.Padding(3);
             this.sourceMetricsLabel.Name = "sourceMetricsLabel";
             this.sourceMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.sourceMetricsLabel.Size = new System.Drawing.Size(296, 33);
+            this.sourceMetricsLabel.Size = new System.Drawing.Size(286, 33);
             this.sourceMetricsLabel.TabIndex = 2;
             this.sourceMetricsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -284,7 +285,7 @@
             this.sourceLabel.Margin = new System.Windows.Forms.Padding(3);
             this.sourceLabel.Name = "sourceLabel";
             this.sourceLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.sourceLabel.Size = new System.Drawing.Size(296, 33);
+            this.sourceLabel.Size = new System.Drawing.Size(286, 33);
             this.sourceLabel.TabIndex = 0;
             this.sourceLabel.Text = "Original";
             this.sourceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -295,13 +296,14 @@
             this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sourceTreeView.Location = new System.Drawing.Point(3, 42);
             this.sourceTreeView.Name = "sourceTreeView";
-            this.sourceTreeView.Size = new System.Drawing.Size(296, 193);
+            this.sourceTreeView.ShowNodeToolTips = true;
+            this.sourceTreeView.Size = new System.Drawing.Size(286, 193);
             this.sourceTreeView.TabIndex = 1;
+            this.sourceTreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.sourceTreeView_AfterLabelEdit);
             this.sourceTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.sourceTreeView_NodeMouseClick);
-            this.sourceTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.sourceTreeView_NodeMouseDoubleClick);
             this.sourceTreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.dragDropEventHandler);
             this.sourceTreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.dragEnterEventHandler);
-            this.sourceTreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sourceTreeView_KeyDown);
+            this.sourceTreeView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.sourceTreeView_KeyUp);
             // 
             // rightPanel
             // 
@@ -318,7 +320,7 @@
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.rightPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rightPanel.Size = new System.Drawing.Size(293, 277);
+            this.rightPanel.Size = new System.Drawing.Size(283, 277);
             this.rightPanel.TabIndex = 0;
             // 
             // destinationMetricsLabel
@@ -329,7 +331,7 @@
             this.destinationMetricsLabel.Margin = new System.Windows.Forms.Padding(3);
             this.destinationMetricsLabel.Name = "destinationMetricsLabel";
             this.destinationMetricsLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.destinationMetricsLabel.Size = new System.Drawing.Size(287, 33);
+            this.destinationMetricsLabel.Size = new System.Drawing.Size(277, 33);
             this.destinationMetricsLabel.TabIndex = 3;
             this.destinationMetricsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -341,7 +343,7 @@
             this.destinationLabel.Margin = new System.Windows.Forms.Padding(3);
             this.destinationLabel.Name = "destinationLabel";
             this.destinationLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.destinationLabel.Size = new System.Drawing.Size(287, 33);
+            this.destinationLabel.Size = new System.Drawing.Size(277, 33);
             this.destinationLabel.TabIndex = 1;
             this.destinationLabel.Text = "Sort Preview";
             this.destinationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -351,7 +353,8 @@
             this.destinationTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.destinationTreeView.Location = new System.Drawing.Point(3, 42);
             this.destinationTreeView.Name = "destinationTreeView";
-            this.destinationTreeView.Size = new System.Drawing.Size(287, 193);
+            this.destinationTreeView.ShowNodeToolTips = true;
+            this.destinationTreeView.Size = new System.Drawing.Size(277, 193);
             this.destinationTreeView.TabIndex = 2;
             // 
             // sortButton
@@ -361,7 +364,7 @@
             this.sortButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.mainTablePanel.SetColumnSpan(this.sortButton, 2);
             this.sortButton.Enabled = false;
-            this.sortButton.Location = new System.Drawing.Point(542, 339);
+            this.sortButton.Location = new System.Drawing.Point(522, 339);
             this.sortButton.Name = "sortButton";
             this.sortButton.Padding = new System.Windows.Forms.Padding(8);
             this.sortButton.Size = new System.Drawing.Size(69, 43);
@@ -378,7 +381,7 @@
             this.maxDirectoriesLabel.Margin = new System.Windows.Forms.Padding(3);
             this.maxDirectoriesLabel.Name = "maxDirectoriesLabel";
             this.maxDirectoriesLabel.Padding = new System.Windows.Forms.Padding(8);
-            this.maxDirectoriesLabel.Size = new System.Drawing.Size(196, 33);
+            this.maxDirectoriesLabel.Size = new System.Drawing.Size(186, 33);
             this.maxDirectoriesLabel.TabIndex = 5;
             this.maxDirectoriesLabel.Text = "Max Directories:";
             this.maxDirectoriesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -387,7 +390,7 @@
             // 
             this.maxDirectoriesUpDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.maxDirectoriesUpDown.AutoSize = true;
-            this.maxDirectoriesUpDown.Location = new System.Drawing.Point(340, 349);
+            this.maxDirectoriesUpDown.Location = new System.Drawing.Point(330, 349);
             this.maxDirectoriesUpDown.Maximum = new decimal(new int[] {
             27,
             0,
@@ -408,28 +411,38 @@
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Location = new System.Drawing.Point(0, 419);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(624, 22);
+            this.statusStrip.Size = new System.Drawing.Size(604, 22);
             this.statusStrip.TabIndex = 2;
             // 
             // nodesContextMenuStrip
             // 
             this.nodesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openNodeToolStripMenuItem,
+            this.renameNodeToolStripMenuItem,
             this.deleteNodeToolStripMenuItem});
             this.nodesContextMenuStrip.Name = "nodesContextMenuStrip";
-            this.nodesContextMenuStrip.Size = new System.Drawing.Size(181, 70);
+            this.nodesContextMenuStrip.Size = new System.Drawing.Size(153, 70);
             // 
             // openNodeToolStripMenuItem
             // 
             this.openNodeToolStripMenuItem.Name = "openNodeToolStripMenuItem";
-            this.openNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openNodeToolStripMenuItem.Text = "&Open";
+            this.openNodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openNodeToolStripMenuItem.Text = "&Open Location";
             this.openNodeToolStripMenuItem.Click += new System.EventHandler(this.openNodeToolStripMenuItem_Click);
+            // 
+            // renameNodeToolStripMenuItem
+            // 
+            this.renameNodeToolStripMenuItem.Name = "renameNodeToolStripMenuItem";
+            this.renameNodeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.renameNodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.renameNodeToolStripMenuItem.Text = "&Rename";
+            this.renameNodeToolStripMenuItem.Click += new System.EventHandler(this.renameNodeToolStripMenuItem_Click);
             // 
             // deleteNodeToolStripMenuItem
             // 
             this.deleteNodeToolStripMenuItem.Name = "deleteNodeToolStripMenuItem";
-            this.deleteNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteNodeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteNodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteNodeToolStripMenuItem.Text = "&Delete";
             this.deleteNodeToolStripMenuItem.Click += new System.EventHandler(this.deleteNodeToolStripMenuItem_Click);
             // 
@@ -437,7 +450,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.ClientSize = new System.Drawing.Size(604, 441);
             this.Controls.Add(this.mainTablePanel);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.statusStrip);
@@ -445,7 +458,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.MinimumSize = new System.Drawing.Size(640, 480);
+            this.MinimumSize = new System.Drawing.Size(598, 480);
             this.Name = "MainForm";
             this.Text = "RomSort";
             this.menuStrip.ResumeLayout(false);
@@ -498,6 +511,7 @@
         private System.Windows.Forms.ContextMenuStrip nodesContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem openNodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renameNodeToolStripMenuItem;
     }
 }
 

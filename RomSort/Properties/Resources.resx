@@ -155,4 +155,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <data name="DeleteNodePromptFormat" xml:space="preserve">
     <value>Are you sure you want to delete "{0}"? This operation cannot be undone.</value>
   </data>
+  <data name="RenameFailedExceptionTextFormat" xml:space="preserve">
+    <value>Unable to rename "{0}" to "{1}".</value>
+  </data>
 </root>

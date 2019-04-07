@@ -154,6 +154,15 @@ namespace RomSort.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to rename &quot;{0}&quot; to &quot;{1}&quot;..
+        /// </summary>
+        internal static string RenameFailedExceptionTextFormat {
+            get {
+                return ResourceManager.GetString("RenameFailedExceptionTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select root directory.
         /// </summary>
         internal static string RootDirectoryPrompt {
