@@ -79,6 +79,24 @@ namespace RomSort.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The files on disk do not match the intended sort, please refresh and try again..
+        /// </summary>
+        internal static string DestinationDiskValidationExceptionMessage {
+            get {
+                return ResourceManager.GetString("DestinationDiskValidationExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to find path &quot;{0}&quot;..
+        /// </summary>
+        internal static string DirectoryNotFoundExceptionMessageFormat {
+            get {
+                return ResourceManager.GetString("DirectoryNotFoundExceptionMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception.
         /// </summary>
         internal static string ExceptionCaption {
@@ -134,6 +152,15 @@ namespace RomSort.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load a valid root directory first..
+        /// </summary>
+        internal static string NoSourceDirectoryExceptionMessage {
+            get {
+                return ResourceManager.GetString("NoSourceDirectoryExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
         ///
         ///The above copyright notice and this permission notice shall be included in a [rest of string was truncated]&quot;;.
@@ -156,9 +183,9 @@ namespace RomSort.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Unable to rename &quot;{0}&quot; to &quot;{1}&quot;..
         /// </summary>
-        internal static string RenameFailedExceptionTextFormat {
+        internal static string RenameFailedExceptionMessageFormat {
             get {
-                return ResourceManager.GetString("RenameFailedExceptionTextFormat", resourceCulture);
+                return ResourceManager.GetString("RenameFailedExceptionMessageFormat", resourceCulture);
             }
         }
         
@@ -168,6 +195,15 @@ namespace RomSort.Properties {
         internal static string RootDirectoryPrompt {
             get {
                 return ResourceManager.GetString("RootDirectoryPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files on disk have changed, please refresh and try again..
+        /// </summary>
+        internal static string SourceDiskValidationExceptionMessage {
+            get {
+                return ResourceManager.GetString("SourceDiskValidationExceptionMessage", resourceCulture);
             }
         }
     }

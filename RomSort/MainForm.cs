@@ -609,7 +609,7 @@ namespace RomSort
             }
             catch (Exception ex)
             {
-                throw new ArgumentException(string.Format(Resources.RenameFailedExceptionTextFormat, node.Name, newName), ex);
+                throw new ArgumentException(string.Format(Resources.RenameFailedExceptionMessageFormat, node.Name, newName), ex);
             }
         }
     }

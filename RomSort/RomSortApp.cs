@@ -55,7 +55,7 @@ namespace RomSort
                 }
                 else
                 {
-                    throw new DirectoryNotFoundException(string.Format("Unable to find path \"{0}\"", value));
+                    throw new DirectoryNotFoundException(string.Format(Resources.DirectoryNotFoundExceptionMessageFormat, value));
                 }
 
                 View.Update(UpdateType.RootDirectory);
@@ -209,21 +209,21 @@ namespace RomSort
 
         public void Sort()
         {
-            if (null == SourceTree)
+            if (string.IsNullOrEmpty(RootDir) || null == SourceTree)
             {
-                throw new Exception("Load a valid root directory first.");
+                throw new Exception();
             }
 
             if (HasConflicts)
             {
-                throw new Exception("There are file conflicts that must be resolved.");
+                throw new Exception(Resources.NoSourceDirectoryExceptionMessage);
             }
 
             if (View.PromptForConfirmation(Resources.ExecuteSortConfirmPrompt))
             {
                 if (!ValidateDiskMatchesDirectoryNode(SourceTree))
                 {
-                    throw new Exception("The files on disk have changed, please refresh and try again.");
+                    throw new Exception(Resources.SourceDiskValidationExceptionMessage);
                 }
 
                 // Move files
@@ -246,7 +246,7 @@ namespace RomSort
 
                 if (!ValidateDiskMatchesDirectoryNode(DestinationTree))
                 {
-                    throw new Exception("The files on disk do not match the intended sort, please refresh and try again.");
+                    throw new Exception(Resources.DestinationDiskValidationExceptionMessage);
                 }
             }
         }

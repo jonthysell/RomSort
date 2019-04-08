@@ -4,11 +4,13 @@
 
 RomSort is a small utility to sort a directory of files into alphabetical sub-directories.
 
-It was designed to assist in the organization of ROM collections, particularly for use on flashcarts. Retro consoles typically have lower resolutions, so browsing ROMs on flashcarts can be painful as you can only view so many items on screen at once.
+It was designed to assist in the organization and browsing of large ROM collections, particularly on flashcarts. By setting a maximum number of sub-directories RomSort will intelligently coalesce letters together.
 
-With RomSort, not only can you group your ROMs into convenient alphabetical sub-directories, but you can also set a maximum number of sub-directories, and the app will intelligently coalesce them together.
+RomSort was written in C# and should run anywhere that supports .NET 2.0. It has officially been tested on:
 
-RomSort is developed in C# for .NET 2.0 and shoud work on Windows XP SP3 and later.
+* Windows XP SP3
+* Windows 10
+* Ubuntu 18.04
 
 ## Installation ##
 
@@ -19,11 +21,15 @@ RomSort is now available on the Microsoft Store.
 1. Get the latest version from https://www.microsoft.com/en-us/p/romsort/9p46qg0l6dv7
 2. Run RomSort from your Start Menu
 
-### Regular Installation (Windows XP SP3 / Vista / 7 / 8.1 / 10) ###
+### Regular Installation (Windows XP SP3 - Windows 10, Ubuntu 18.04) ###
 
 1. Download the latest zip file from https://github.com/jonthysell/RomSort/releases/latest
 2. Extract the zip file
 3. Double-click RomSort.exe
+
+**Note:** If you're on Windows XP and don't have .NET 2.0 installed, you can get it here: https://www.microsoft.com/en-us/download/details.aspx?id=1639
+
+**Note:** If you're on Ubuntu 18.04 and don't have the Mono Runtime installed, you can get it with: `sudo apt-get install mono-runtime libmono-system-windows-forms4.0-cil`
 
 You should now see the RomSort window running.
 
@@ -37,19 +43,11 @@ You should now see the RomSort window running.
 
 **Note:** RomSort will create a completely new directory hierarchy under the root directory, *exactly* as shown in the preview. It will remove (delete) all other existing directories. There is no way to "undo" a sort, so make sure the preview is exactly what you want before you click the "Sort" button.
 
-### Making Modifications ###
-
-Right-clicking on a folder or file will bring up a context-menu of useful operations:
-
-1. "Open Location" will open the File Explorer to the location of that item.
-2. "Rename" will prompt you to rename that item.
-3. "Delete" will prompt you to delete that item.
-
 ### Name Conflicts ###
 
-Since RomSort moves files into alphabetical sub-directories, it requires that each file has a unique name. Otherwise, RomSort would end up overwriting files as it moved them.
+Since RomSort reorganizes files into alphabetical sub-directories, it requires that each and every file starts with a unique name. Otherwise, RomSort would end up overwriting files as it moved them around.
 
-Name conflicts are flagged red in the "Original" view. You will need to rename or remove the conflicting files. You can either use the right-click context-menu within RomSort or perform the operation, or do so manually in the File Explorer. If you've made manually changes to the files on disk, be sure to run File > Refresh to verify that the conflicts have been resolved.
+Such name conflicts (and all of their parent directories) are flagged red in the "Original" view. You will need to rename or remove the conflicting files before sorting. You can do so via the operations available when right-clicking the conflicting item ("Rename" or "Delete") or by fixing things manually in the File Explorer. If you've made manual changes to the files on disk, be sure to run File > Refresh so RomSort can see the changes.
 
 ## Errata ##
 

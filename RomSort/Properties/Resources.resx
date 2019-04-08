@@ -155,7 +155,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <data name="DeleteNodePromptFormat" xml:space="preserve">
     <value>Are you sure you want to delete "{0}"? This operation cannot be undone.</value>
   </data>
-  <data name="RenameFailedExceptionTextFormat" xml:space="preserve">
+  <data name="RenameFailedExceptionMessageFormat" xml:space="preserve">
     <value>Unable to rename "{0}" to "{1}".</value>
+  </data>
+  <data name="DestinationDiskValidationExceptionMessage" xml:space="preserve">
+    <value>The files on disk do not match the intended sort, please refresh and try again.</value>
+  </data>
+  <data name="DirectoryNotFoundExceptionMessageFormat" xml:space="preserve">
+    <value>Unable to find path "{0}".</value>
+  </data>
+  <data name="NoSourceDirectoryExceptionMessage" xml:space="preserve">
+    <value>Load a valid root directory first.</value>
+  </data>
+  <data name="SourceDiskValidationExceptionMessage" xml:space="preserve">
+    <value>The files on disk have changed, please refresh and try again.</value>
   </data>
 </root>

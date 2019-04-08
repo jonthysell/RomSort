@@ -4,7 +4,7 @@
 // Author:
 //       Jon Thysell <thysell@gmail.com>
 // 
-// Copyright (c) 2018 Jon Thysell <http://jonthysell.com>
+// Copyright (c) 2018, 2019 Jon Thysell <http://jonthysell.com>
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -166,7 +166,7 @@ namespace RomSort
 
             if (this == other)
             {
-                throw new ArgumentException("AlphaFolders overlap!");
+                throw new ArgumentException();
             }
 
             int startCmp = string.Compare(Start, other.Start, true);
@@ -181,7 +181,7 @@ namespace RomSort
                 return 1;
             }
 
-            throw new ArgumentException("AlphaFolders overlap!");
+            throw new ArgumentException();
         }
 
         public static readonly string NumericAlphaFolder = "0";
