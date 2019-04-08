@@ -4,7 +4,7 @@
     bool previewBuild = false;
 
     int major    = 1;
-    int minor    = 1;
+    int minor    = 2;
     int build    = 0;
     int revision = 0;
 
