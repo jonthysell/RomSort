@@ -224,7 +224,6 @@
             this.openButton.Size = new System.Drawing.Size(69, 43);
             this.openButton.TabIndex = 2;
             this.openButton.Text = "Open";
-            this.openButton.UseVisualStyleBackColor = true;
             this.openButton.Click += new System.EventHandler(this.openEventHandler);
             // 
             // mainSplitContainer
@@ -370,7 +369,6 @@
             this.sortButton.Size = new System.Drawing.Size(69, 43);
             this.sortButton.TabIndex = 4;
             this.sortButton.Text = "Sort";
-            this.sortButton.UseVisualStyleBackColor = true;
             this.sortButton.Click += new System.EventHandler(this.sortEventHandler);
             // 
             // maxDirectoriesLabel
