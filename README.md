@@ -1,4 +1,4 @@
-![RomSort ScreenShot](./.github/screenshot.png)
+![RomSort Banner](./.github/banner.png)
 
 # RomSort #
 
@@ -31,7 +31,9 @@ RomSort is now available on the Microsoft Store.
 
 **Note:** If you're on Ubuntu 18.04 and don't have the Mono Runtime installed, you can get it with: `sudo apt-get install mono-runtime libmono-system-windows-forms4.0-cil`
 
-You should now see the RomSort window running.
+You should now see the RomSort window running:
+
+![RomSort ScreenShot](./.github/screenshot.png)
 
 ## Usage ##
 
